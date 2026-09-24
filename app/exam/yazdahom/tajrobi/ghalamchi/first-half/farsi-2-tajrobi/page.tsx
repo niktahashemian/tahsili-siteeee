@@ -88,7 +88,7 @@ export default function Farsi2ChaptersPage() {
       icon: '🏆',
       color: '#FF6B6B',
       examSlug: 'final-exam',
-      examName: 'آزمون جامع کل کتاب فارسی (۲) پایه یازدهم',
+      examName: 'آزمون جامع کل کتاب فارسی (۲) پایه یازدهم - گزینه دو',
       examQuestionCount: 50,
       lessons: [
         { id: 13, name: '📚 کل دروس کتاب فارسی (۲)', description: 'شامل تمام مباحث: ادبیات تعلیمی، غنایی، حماسی، دستور زبان و آرایه‌های ادبی', questionCount: 50, slug: 'final-exam' },
@@ -101,11 +101,11 @@ export default function Farsi2ChaptersPage() {
   };
 
   const handleLessonClick = (lessonSlug: string) => {
-    router.push(`/exam/yazdahom/tajrobi/ghalamchi/first-half/farsi-2-tajrobi/${lessonSlug}`);
+    router.push(`/exam/yazdahom/tajrobi/gozine2/first-half/farsi-2-tajrobi/${lessonSlug}`);
   };
 
   const handleChapterExamClick = (examSlug: string) => {
-    router.push(`/exam/yazdahom/tajrobi/ghalamchi/first-half/farsi-2-tajrobi/${examSlug}`);
+    router.push(`/exam/yazdahom/tajrobi/gozine2/first-half/farsi-2-tajrobi/${examSlug}`);
   };
 
   return (
@@ -117,7 +117,7 @@ export default function Farsi2ChaptersPage() {
         >
           ← بازگشت به لیست دروس
         </button>
-        <h1 style={{ fontSize: '2.5rem', color: '#1a237e', margin: '0.5rem 0', fontWeight: 'bold' }}>📝 فارسی (۲) - پایه یازدهم تجربی قلمچی</h1>
+        <h1 style={{ fontSize: '2.5rem', color: '#1a237e', margin: '0.5rem 0', fontWeight: 'bold' }}>📝 فارسی (۲) - پایه یازدهم تجربی گزینه دو</h1>
         <p style={{ color: '#555', fontSize: '1rem' }}>برای شروع، روی هر فصل کلیک کنید و سپس درس یا آزمون جامع مورد نظر را انتخاب نمایید</p>
       </div>
 
@@ -217,7 +217,7 @@ export default function Farsi2ChaptersPage() {
         <p>💡 نکته: برای شروع آزمون هر درس یا آزمون جامع فصل، روی آن کلیک کنید.</p>
         <p>📊 پس از اتمام هر آزمون، درصد شما به همراه پاسخنامه تشریحی نمایش داده می‌شود.</p>
         <p>🏆 آزمون‌های جامع شامل سوالات ترکیبی از تمام دروس آن فصل می‌باشند.</p>
-        <p>📝 این آزمون‌ها مطابق با کتاب فارسی (۲) پایه یازدهم رشته تجربی طراحی شده‌اند.</p>
+        <p>📝 این آزمون‌ها مطابق با کتاب فارسی (۲) پایه یازدهم رشته تجربی - گزینه دو طراحی شده‌اند.</p>
       </div>
 
       <style>{`

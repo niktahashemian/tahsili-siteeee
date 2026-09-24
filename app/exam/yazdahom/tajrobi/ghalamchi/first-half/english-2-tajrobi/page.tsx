@@ -88,7 +88,7 @@ export default function English2ChaptersPage() {
       icon: '🏆',
       color: '#FF6B6B',
       examSlug: 'final-exam',
-      examName: 'Final Exam: English (2) Grade 11',
+      examName: 'Final Exam: English (2) Grade 11 - Gozine 2',
       examQuestionCount: 50,
       lessons: [
         { id: 13, name: '📚 All Lessons - English (2)', description: 'All topics: Vocabulary, Grammar (Simple Past, Present Perfect, Passive Voice, Conditionals), Reading Comprehension', questionCount: 50, slug: 'final-exam' },
@@ -117,7 +117,7 @@ export default function English2ChaptersPage() {
         >
           ← بازگشت به لیست دروس
         </button>
-        <h1 style={{ fontSize: '2.5rem', color: '#1a237e', margin: '0.5rem 0', fontWeight: 'bold' }}>🇬🇧 زبان انگلیسی (۲) - پایه یازدهم تجربی قلمچی</h1>
+        <h1 style={{ fontSize: '2.5rem', color: '#1a237e', margin: '0.5rem 0', fontWeight: 'bold' }}>🇬🇧 زبان انگلیسی (۲) - پایه یازدهم تجربی گزینه دو</h1>
         <p style={{ color: '#555', fontSize: '1rem' }}>برای شروع، روی هر فصل کلیک کنید و سپس درس یا آزمون جامع مورد نظر را انتخاب نمایید</p>
       </div>
 
@@ -217,7 +217,7 @@ export default function English2ChaptersPage() {
         <p>💡 نکته: برای شروع آزمون هر درس یا آزمون جامع فصل، روی آن کلیک کنید.</p>
         <p>📊 پس از اتمام هر آزمون، درصد شما به همراه پاسخنامه تشریحی نمایش داده می‌شود.</p>
         <p>🏆 آزمون‌های جامع شامل سوالات ترکیبی از تمام دروس آن فصل می‌باشند.</p>
-        <p>🇬🇧 این آزمون‌ها مطابق با کتاب زبان انگلیسی (۲) پایه یازدهم رشته تجربی طراحی شده‌اند.</p>
+        <p>🇬🇧 این آزمون‌ها مطابق با کتاب زبان انگلیسی (۲) پایه یازدهم رشته تجربی - گزینه دو طراحی شده‌اند.</p>
       </div>
 
       <style>{`

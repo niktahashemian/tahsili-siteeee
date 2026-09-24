@@ -28,73 +28,56 @@ export default function ZistShenasi2ChaptersPage() {
   const chapters: Chapter[] = [
     {
       id: 1,
-      name: 'فصل اول: تنظیم عصبی',
-      icon: '🧠',
+      name: 'فصل اول: ایمنی و دفاع در بدن',
+      icon: '🛡️',
       color: '#E91E63',
       examSlug: 'chapter1-exam',
-      examName: 'آزمون جامع فصل اول: تنظیم عصبی',
+      examName: 'آزمون جامع فصل اول: ایمنی و دفاع در بدن',
       examQuestionCount: 25,
       lessons: [
-        { id: 1, name: 'درس ۱-۱: ساختار و عملکرد نورون', description: 'ساختار نورون، انواع نورون، هدایت پیام عصبی، پتانسیل عمل و انتقال سیناپسی', questionCount: 15, slug: 'lesson1' },
-        { id: 2, name: 'درس ۱-۲: دستگاه عصبی مرکزی', description: 'ساختار مغز، نخاع، مننژها، مایع مغزی-نخاعی و عملکرد هر بخش', questionCount: 12, slug: 'lesson2' },
-        { id: 3, name: 'درس ۱-۳: دستگاه عصبی محیطی', description: 'اعصاب مغزی، اعصاب نخاعی، دستگاه عصبی خودمختار (سمپاتیک و پاراسمپاتیک)', questionCount: 10, slug: 'lesson3' },
-        { id: 4, name: 'درس ۱-۴: حواس ویژه', description: 'بینایی، شنوایی، تعادل، بویایی و چشایی - ساختار و عملکرد هر یک', questionCount: 12, slug: 'lesson4' },
+        { id: 1, name: 'درس ۱-۱: خطوط دفاعی اول و دوم', description: 'دفاع غیراختصاصی، پوست، مخاط، سلول‌های فاگوسیت، التهاب و تب', questionCount: 14, slug: 'lesson1' },
+        { id: 2, name: 'درس ۱-۲: ایمنی اختصاصی (سلولی و هومورال)', description: 'لنفوسیت‌های B و T، آنتی‌ژن و آنتی‌تن، ایمنی فعال و غیرفعال', questionCount: 12, slug: 'lesson2' },
+        { id: 3, name: 'درس ۱-۳: واکسن‌ها و اختلالات ایمنی', description: 'انواع واکسن، آلرژی، بیماری‌های خودایمنی، نقص ایمنی', questionCount: 10, slug: 'lesson3' },
       ]
     },
     {
       id: 2,
-      name: 'فصل دوم: دستگاه حرکتی',
-      icon: '💪',
-      color: '#2196F3',
+      name: 'فصل دوم: دستگاه گوارش و تغذیه',
+      icon: '🍽️',
+      color: '#FF9800',
       examSlug: 'chapter2-exam',
-      examName: 'آزمون جامع فصل دوم: دستگاه حرکتی',
+      examName: 'آزمون جامع فصل دوم: دستگاه گوارش و تغذیه',
       examQuestionCount: 25,
       lessons: [
-        { id: 5, name: 'درس ۲-۱: اسکلت و استخوان‌ها', description: 'انواع استخوان، ساختار استخوان، رشد و ترمیم استخوان، مفاصل و انواع حرکات', questionCount: 12, slug: 'lesson5' },
-        { id: 6, name: 'درس ۲-۲: ماهیچه‌ها و انقباض', description: 'انواع ماهیچه، ساختار ماهیچه اسکلتی، مکانیسم انقباض، واحد حرکتی', questionCount: 10, slug: 'lesson6' },
-        { id: 7, name: 'درس ۲-۳: کنترل حرکت و هماهنگی', description: 'نقش مخچه، عقده‌های قاعده‌ای، دستگاه هرمی و خارج هرمی در کنترل حرکت', questionCount: 8, slug: 'lesson7' },
-        { id: 8, name: 'درس ۲-۴: اختلالات دستگاه حرکتی', description: 'فلج، دیستروفی ماهیچه‌ای، بیماری پارکینسون، MS و سایر اختلالات', questionCount: 8, slug: 'lesson8' },
+        { id: 4, name: 'درس ۲-۱: ساختار و عملکرد دستگاه گوارش', description: 'دهان، مری، معده، روده کوچک و بزرگ، کبد، پانکراس و کیسه صفرا', questionCount: 12, slug: 'lesson4' },
+        { id: 5, name: 'درس ۲-۲: هضم و جذب مواد غذایی', description: 'هضم مکانیکی و شیمیایی، آنزیم‌های گوارشی، جذب مواد در روده', questionCount: 10, slug: 'lesson5' },
+        { id: 6, name: 'درس ۲-۳: تغذیه و اختلالات گوارشی', description: 'مواد مغذی، ویتامین‌ها، مواد معدنی، زخم معده، یبوست و اسهال', questionCount: 8, slug: 'lesson6' },
       ]
     },
     {
       id: 3,
-      name: 'فصل سوم: دستگاه گردش خون',
-      icon: '❤️',
-      color: '#F44336',
+      name: 'فصل سوم: دستگاه تنفس و تبادل گازها',
+      icon: '🫁',
+      color: '#2196F3',
       examSlug: 'chapter3-exam',
-      examName: 'آزمون جامع فصل سوم: دستگاه گردش خون',
+      examName: 'آزمون جامع فصل سوم: دستگاه تنفس و تبادل گازها',
       examQuestionCount: 25,
       lessons: [
-        { id: 9, name: 'درس ۳-۱: خون و اجزای آن', description: 'گلبول‌های قرمز، گلبول‌های سفید، پلاکت‌ها، پلاسما و عملکرد هر کدام', questionCount: 12, slug: 'lesson9' },
-        { id: 10, name: 'درس ۳-۲: قلب و گردش خون', description: 'ساختار قلب، مسیر گردش خون، چرخه قلبی، نوار قلب (ECG) و تنظیم ضربان', questionCount: 10, slug: 'lesson10' },
-        { id: 11, name: 'درس ۳-۳: رگ‌های خونی', description: 'انواع رگ‌ها (سرخرگ، سیاهرگ، مویرگ)، ساختار و عملکرد، فشار خون', questionCount: 10, slug: 'lesson11' },
-        { id: 12, name: 'درس ۳-۴: بیماری‌های قلبی-عروقی', description: 'فشار خون بالا، تصلب شرایین، سکته قلبی و مغزی، عوامل خطر و پیشگیری', questionCount: 8, slug: 'lesson12' },
+        { id: 7, name: 'درس ۳-۱: ساختار دستگاه تنفس', description: 'مجاری تنفسی، ریه‌ها، دیافراگم، پرده‌های جنب، تنفس خارجی و داخلی', questionCount: 12, slug: 'lesson7' },
+        { id: 8, name: 'درس ۳-۲: تبادل گازها و تنظیم تنفس', description: 'انتشار گازها در آلوئول و مویرگ‌ها، نقش هموگلوبین، تنظیم عصبی تنفس', questionCount: 10, slug: 'lesson8' },
+        { id: 9, name: 'درس ۳-۳: بیماری‌های تنفسی', description: 'آسم، برونشیت، ذات‌الریه، سل، کرونا و پیشگیری از آنها', questionCount: 8, slug: 'lesson9' },
       ]
     },
     {
       id: 4,
-      name: 'فصل چهارم: دستگاه تنفس و دفع',
-      icon: '🫁',
-      color: '#4CAF50',
-      examSlug: 'chapter4-exam',
-      examName: 'آزمون جامع فصل چهارم: دستگاه تنفس و دفع',
-      examQuestionCount: 25,
-      lessons: [
-        { id: 13, name: 'درس ۴-۱: دستگاه تنفس', description: 'ساختار دستگاه تنفس، مکانیسم تنفس، تبادل گازها در ریه، تنظیم تنفس', questionCount: 12, slug: 'lesson13' },
-        { id: 14, name: 'درس ۴-۲: دستگاه دفع ادراری', description: 'ساختار کلیه، نفرون، تشکیل ادرار، تنظیم آب و الکترولیت‌ها', questionCount: 10, slug: 'lesson14' },
-        { id: 15, name: 'درس ۴-۳: بیماری‌های تنفسی و کلیوی', description: 'آسم، COPD، نارسایی کلیه، سنگ کلیه و عفونت‌های ادراری', questionCount: 8, slug: 'lesson15' },
-      ]
-    },
-    {
-      id: 5,
-      name: '🏆 آزمون جامع کل کتاب زیست‌شناسی (۲)',
+      name: '🏆 آزمون جامع کل کتاب زیست‌شناسی (۲) - نیم‌سال اول',
       icon: '🏆',
       color: '#FF6B6B',
       examSlug: 'final-exam',
-      examName: 'آزمون جامع کل کتاب زیست‌شناسی (۲) پایه یازدهم',
+      examName: 'آزمون جامع کل کتاب زیست‌شناسی (۲) نیم‌سال اول - گزینه دو',
       examQuestionCount: 50,
       lessons: [
-        { id: 16, name: '📚 کل دروس کتاب زیست‌شناسی (۲)', description: 'شامل تمام مباحث: تنظیم عصبی، دستگاه حرکتی، دستگاه گردش خون، دستگاه تنفس و دفع', questionCount: 50, slug: 'final-exam' },
+        { id: 10, name: '📚 کل دروس کتاب زیست‌شناسی (۲) - نیم‌سال اول', description: 'شامل تمام مباحث: ایمنی و دفاع در بدن، دستگاه گوارش و تغذیه، دستگاه تنفس و تبادل گازها', questionCount: 50, slug: 'final-exam' },
       ]
     }
   ];
@@ -120,7 +103,7 @@ export default function ZistShenasi2ChaptersPage() {
         >
           ← بازگشت به لیست دروس
         </button>
-        <h1 style={{ fontSize: '2.5rem', color: '#1a237e', margin: '0.5rem 0', fontWeight: 'bold' }}>🧬 زیست‌شناسی (۲) - پایه یازدهم تجربی قلمچی</h1>
+        <h1 style={{ fontSize: '2.5rem', color: '#1a237e', margin: '0.5rem 0', fontWeight: 'bold' }}>🧬 زیست‌شناسی (۲)  - پایه یازدهم </h1>
         <p style={{ color: '#555', fontSize: '1rem' }}>برای شروع، روی هر فصل کلیک کنید و سپس درس یا آزمون جامع مورد نظر را انتخاب نمایید</p>
       </div>
 
@@ -220,7 +203,7 @@ export default function ZistShenasi2ChaptersPage() {
         <p>💡 نکته: برای شروع آزمون هر درس یا آزمون جامع فصل، روی آن کلیک کنید.</p>
         <p>📊 پس از اتمام هر آزمون، درصد شما به همراه پاسخنامه تشریحی نمایش داده می‌شود.</p>
         <p>🏆 آزمون‌های جامع شامل سوالات ترکیبی از تمام دروس آن فصل می‌باشند.</p>
-        <p>🧬 این آزمون‌ها مطابق با کتاب زیست‌شناسی (۲) پایه یازدهم رشته تجربی طراحی شده‌اند.</p>
+        <p>🧬 این آزمون‌ها مطابق با کتاب زیست‌شناسی (۲) پایه یازدهم رشته تجربی - نیم‌سال دوم - گزینه دو طراحی شده‌اند.</p>
       </div>
 
       <style>{`
