@@ -681,422 +681,319 @@
     padding: 0.4rem 1rem;
   }
 }
-/* ======================================== */
-/* استایل فوتر */
-/* ======================================== */
+/* ============================================================
+   FOOTER STYLES - Light Theme with Blue Accents
+   ============================================================ */
 
-.footer-main {
-  background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
-  color: #cbd5e0;
-  direction: rtl;
-  padding: 3rem 0 1rem;
-  position: relative;
-  width: 100%;
-}
-
-.footer-main-container {
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 0 20px;
-}
-
-/* ردیف اصلی فوتر */
-.footer-row {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 2rem;
-  margin-bottom: 3rem;
-  padding-bottom: 2rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-/* ستون‌های فوتر */
-.footer-col {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.footer-title {
-  color: white;
-  font-size: 1.1rem;
-  font-weight: 700;
-  margin-bottom: 0.5rem;
-  position: relative;
-  display: inline-block;
-  padding-bottom: 8px;
-}
-
-.footer-title::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  width: 40px;
-  height: 2px;
-  background: linear-gradient(90deg, #8ed557, #48bb78);
-  border-radius: 2px;
-}
-
-.footer-list {
+/* پاک کردن استایل‌های پیش‌فرض */
+.footer-list,
+.footer-list-item {
   list-style: none;
   padding: 0;
   margin: 0;
+}
+
+/* ============ فوتر اصلی ============ */
+.footer-main {
+  background-color: #f9fafb; /* bg-gray-50 */
+  border-top: 1px solid #e5e7eb; /* border-gray-200 */
+  padding: 40px 20px 24px 20px;
+  margin-top: 80px;
+  direction: rtl;
+  font-family: Tahoma, Arial, sans-serif;
+  text-align: right;
+  color: #4b5563;
+}
+
+.footer-main-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+/* ============ ردیف اصلی: ۴ ستون ============ */
+.footer-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
+}
+
+.footer-col {
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+}
+
+.footer-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1f2937; /* text-gray-800 */
+  margin: 0 0 16px 0;
 }
 
 .footer-list-item {
-  display: flex;
-  align-items: center;
+  margin-bottom: 8px;
 }
 
 .footer-link {
-  color: #cbd5e0;
+  font-size: 14px;
+  color: #4b5563; /* text-gray-600 */
   text-decoration: none;
-  font-size: 0.9rem;
-  transition: all 0.3s ease;
+  transition: color 0.2s ease;
   display: inline-block;
-  position: relative;
-  padding-right: 0;
 }
 
 .footer-link:hover {
-  color: #8ed557;
-  transform: translateX(-5px);
-  padding-right: 5px;
+  color: #2563eb; /* hover:text-blue-600 */
 }
 
-/* بخش تیکت و شبکه‌های اجتماعی - کنار هم */
-.footer-ticket-social-wrapper {
+/* آیتم‌های ارتباط با ما (آیکون + متن) */
+.footer-contact-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: #4b5563;
+  margin-bottom: 12px;
+}
+
+.footer-icon-blue {
+  color: #3b82f6; /* text-blue-500 */
+  flex-shrink: 0;
+}
+
+/* ============ خط جداکننده ============ */
+.footer-divider {
+  border-top: 1px solid #e5e7eb;
+  margin: 40px 0 32px 0;
+}
+
+/* ============ بخش پایینی: پشتیبانی + شبکه‌های اجتماعی ============ */
+.footer-bottom-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 2rem;
-  margin-bottom: 2rem;
-  padding-bottom: 2rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  gap: 32px;
+  margin-bottom: 32px;
 }
 
-/* بخش تیکت */
+/* باکس پشتیبانی */
 .footer-ticket-section {
-  background: rgba(255, 255, 255, 0.05);
-  padding: 1.5rem;
-  border-radius: 16px;
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 24px;
   text-align: center;
-  transition: all 0.3s ease;
-  border: 1px solid rgba(142, 213, 87, 0.2);
-}
-
-.footer-ticket-section:hover {
-  background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(142, 213, 87, 0.4);
-  transform: translateY(-2px);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
 .footer-ticket-title {
-  color: white;
-  font-size: 1.1rem;
-  font-weight: 700;
-  margin-bottom: 0.5rem;
+  font-size: 18px;
+  font-weight: bold;
+  color: #1f2937;
+  margin: 0 0 12px 0;
 }
 
 .footer-ticket-description {
-  color: #cbd5e0;
-  font-size: 0.85rem;
-  margin-bottom: 1rem;
+  font-size: 14px;
+  color: #4b5563;
+  line-height: 1.7;
+  margin: 0 0 20px 0;
 }
 
 .footer-ticket-link {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: linear-gradient(135deg, #8ed557 0%, #48bb78 100%);
-  color: white;
-  text-decoration: none;
-  padding: 0.75rem 1.5rem;
+  background-color: #2563eb; /* bg-blue-600 */
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 12px 24px;
   border-radius: 50px;
-  font-size: 0.9rem;
-  font-weight: 600;
-  transition: all 0.3s ease;
-  margin-top: 0.5rem;
+  text-decoration: none;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 10px rgba(37, 99, 235, 0.2);
 }
 
 .footer-ticket-link:hover {
-  transform: scale(1.05);
-  box-shadow: 0 5px 15px rgba(142, 213, 87, 0.3);
+  background-color: #1d4ed8; /* hover:bg-blue-700 */
+  box-shadow: 0 6px 15px rgba(37, 99, 235, 0.35);
+  transform: translateY(-2px);
 }
 
-/* بخش شبکه‌های اجتماعی */
+/* باکس شبکه‌های اجتماعی */
 .footer-social-section {
-  background: rgba(255, 255, 255, 0.05);
-  padding: 1.5rem;
-  border-radius: 16px;
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 24px;
   text-align: center;
-  transition: all 0.3s ease;
-}
-
-.footer-social-section:hover {
-  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
 .footer-social-title {
-  color: white;
-  font-size: 1.1rem;
-  font-weight: 700;
-  margin-bottom: 1rem;
+  font-size: 18px;
+  font-weight: bold;
+  color: #1f2937;
+  margin: 0 0 20px 0;
 }
 
 .footer-social-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 1rem;
+  align-items: center;
+  gap: 12px;
 }
 
-.footer-social-item {
-  display: flex;
-}
-
-/* لینک‌های اجتماعی با متن */
+/* دکمه‌های متنی (اینستاگرام و تلگرام) */
 .footer-social-link-text {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 0.6rem 1.2rem;
+  background-color: #f3f4f6; /* bg-gray-100 */
+  color: #4b5563;
+  font-size: 12px;
+  padding: 8px 16px;
   border-radius: 50px;
   text-decoration: none;
-  font-size: 0.9rem;
-  font-weight: 500;
-  transition: all 0.3s ease;
-  background: rgba(255, 255, 255, 0.1);
-  color: #cbd5e0;
+  transition: all 0.25s ease;
+}
+
+.footer-social-link-text:hover {
+  color: #ffffff;
+  transform: translateY(-2px);
 }
 
 .footer-social-link-text.instagram:hover {
-  background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045);
-  color: white;
-  transform: translateY(-2px);
+  background: linear-gradient(to left, #ec4899, #a855f7);
+  box-shadow: 0 4px 12px rgba(236, 72, 153, 0.35);
 }
 
 .footer-social-link-text.telegram:hover {
-  background: #0088cc;
-  color: white;
-  transform: translateY(-2px);
+  background: linear-gradient(to left, #38bdf8, #3b82f6);
+  box-shadow: 0 4px 12px rgba(56, 189, 248, 0.35);
 }
 
-/* لینک‌های اجتماعی فقط آیکون */
+/* دکمه‌های فقط آیکون */
 .footer-social-link-icon {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
   width: 40px;
   height: 40px;
+  background-color: #f3f4f6;
+  color: #4b5563;
   border-radius: 50%;
   text-decoration: none;
-  transition: all 0.3s ease;
-  background: rgba(255, 255, 255, 0.1);
-  color: #cbd5e0;
+  transition: all 0.25s ease;
 }
 
-.footer-social-link-icon.facebook:hover {
-  background: #1877f2;
-  color: white;
-  transform: translateY(-2px);
+.footer-social-link-icon:hover {
+  color: #ffffff;
+  transform: translateY(-2px) scale(1.05);
 }
 
-.footer-social-link-icon.twitter:hover {
-  background: #1da1f2;
-  color: white;
-  transform: translateY(-2px);
+.footer-social-link-icon.whatsapp:hover {
+  background-color: #22c55e;
+  box-shadow: 0 4px 12px rgba(34, 197, 94, 0.35);
 }
 
-.footer-social-link-icon.linkedin:hover {
-  background: #0077b5;
-  color: white;
-  transform: translateY(-2px);
+.footer-social-link-icon.email:hover {
+  background-color: #f59e0b;
+  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.35);
 }
 
-.footer-social-icon {
-  font-size: 1.1rem;
+.footer-social-link-icon.phone:hover {
+  background-color: #3b82f6;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.35);
 }
 
-/* کپی‌رایت */
+/* ============ کپی‌رایت ============ */
 .footer-copyright {
+  border-top: 1px solid #e5e7eb;
+  padding-top: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
   text-align: center;
-  padding-top: 1.5rem;
-  font-size: 0.85rem;
-  color: #a0aec0;
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-/* ======================================== */
-/* انیمیشن‌ها */
-/* ======================================== */
-
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.footer-copyright p {
+  font-size: 12px;
+  color: #6b7280;
+  margin: 0;
 }
 
-.footer-col,
-.footer-ticket-section,
-.footer-social-section {
-  animation: fadeInUp 0.5s ease forwards;
-}
-
-.footer-col:nth-child(1) { animation-delay: 0.1s; }
-.footer-col:nth-child(2) { animation-delay: 0.2s; }
-.footer-col:nth-child(3) { animation-delay: 0.3s; }
-.footer-col:nth-child(4) { animation-delay: 0.4s; }
-.footer-ticket-section { animation-delay: 0.5s; }
-.footer-social-section { animation-delay: 0.6s; }
-
-/* ======================================== */
-/* ریسپانسیو */
-/* ======================================== */
+/* ============ ریسپانسیو ============ */
 
 /* تبلت */
-@media (max-width: 991px) {
-  .footer-main {
-    padding: 2rem 0 1rem;
-  }
-
+@media (max-width: 992px) {
   .footer-row {
     grid-template-columns: repeat(2, 1fr);
-    gap: 1.5rem;
+    gap: 25px;
   }
 
-  .footer-ticket-social-wrapper {
+  .footer-bottom-grid {
     grid-template-columns: 1fr;
-    gap: 1rem;
-  }
-
-  .footer-ticket-section,
-  .footer-social-section {
-    padding: 1.25rem;
+    gap: 20px;
   }
 }
 
 /* موبایل */
-@media (max-width: 768px) {
+@media (max-width: 576px) {
   .footer-main {
-    margin-top: 2rem;
-    padding: 1.5rem 0 1rem;
-  }
-
-  .footer-main-container {
-    padding: 0 15px;
+    padding: 35px 15px 20px 15px;
+    margin-top: 50px;
   }
 
   .footer-row {
     grid-template-columns: 1fr;
-    gap: 1.5rem;
-    margin-bottom: 2rem;
+    gap: 25px;
   }
 
-  .footer-col {
-    text-align: center;
-    align-items: center;
+  .footer-title {
+    font-size: 16px;
+    margin-bottom: 12px;
   }
 
-  .footer-title::after {
-    right: 50%;
-    transform: translateX(50%);
-  }
-
-  .footer-list {
-    align-items: center;
-  }
-
-  .footer-link:hover {
-    transform: translateX(0);
-    padding-right: 0;
-  }
-
-  .footer-ticket-social-wrapper {
-    gap: 1.5rem;
+  .footer-link {
+    font-size: 13.5px;
   }
 
   .footer-ticket-section,
   .footer-social-section {
-    padding: 1rem;
-  }
-
-  .footer-ticket-link {
-    padding: 0.6rem 1.2rem;
-    font-size: 0.85rem;
-  }
-
-  .footer-social-list {
-    gap: 0.75rem;
-  }
-
-  .footer-social-link-text {
-    padding: 0.5rem 1rem;
-    font-size: 0.85rem;
-  }
-
-  /* مخفی کردن متن در موبایل */
-  .footer-social-link-text span:last-child {
-    display: none;
-  }
-
-  .footer-social-link-text {
-    width: 40px;
-    height: 40px;
-    justify-content: center;
-  }
-
-  .footer-copyright {
-    font-size: 0.75rem;
-    padding-top: 1rem;
-  }
-}
-
-/* موبایل خیلی کوچک */
-@media (max-width: 480px) {
-  .footer-main {
-    padding: 1rem 0 0.5rem;
-  }
-
-  .footer-row {
-    gap: 1rem;
-    margin-bottom: 1.5rem;
-  }
-
-  .footer-title {
-    font-size: 1rem;
-  }
-
-  .footer-link {
-    font-size: 0.85rem;
+    padding: 20px 15px;
   }
 
   .footer-ticket-title,
   .footer-social-title {
-    font-size: 1rem;
+    font-size: 16px;
   }
 
   .footer-ticket-description {
-    font-size: 0.8rem;
+    font-size: 13px;
   }
 
-  .footer-social-list {
-    gap: 0.5rem;
+  .footer-social-link-text {
+    font-size: 11px;
+    padding: 7px 12px;
   }
 
   .footer-social-link-icon {
-    width: 35px;
-    height: 35px;
+    width: 36px;
+    height: 36px;
+  }
+
+  .footer-copyright p {
+    font-size: 11px;
+  }
+}
+
+/* دسکتاپ بزرگ‌تر */
+@media (min-width: 1024px) {
+  .footer-copyright {
+    flex-direction: row;
+    justify-content: space-between;
   }
 }

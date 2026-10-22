@@ -17,7 +17,7 @@ export default function LessonsPage() {
   const router = useRouter();
 
   const grade = params.grade as string; // 'yazdahom'
-  const field = params.field as string; // 'tajrobi'
+  const field = params.field as string; // 'ensani'
   const exam = params.exam as string; // 'ghalamchi'
   const semester = params.semester as string; // 'first-half'
 
@@ -59,95 +59,140 @@ export default function LessonsPage() {
     return map[semesterPath] || semesterPath;
   };
 
-  // ======================== لیست دروس یازدهم تجربی ========================
+  // ======================== لیست دروس یازدهم انسانی ========================
   const lessons: Lesson[] = [
     {
       id: 1,
-      name: 'فیزیک (2)',
-      icon: '⚛️',
+      name: 'فارسی (2)',
+      icon: '📖',
       color: '#9C27B0',
-      description: 'مکانیک، الکتریسیته، مغناطیس، موج و نور',
+      description: 'متن‌های ادبی، آرایه‌ها، دستور زبان',
       questionCount: 10,
     },
     {
       id: 2,
-      name: 'شیمی (2)',
-      icon: '🧪',
+      name: 'دین و زندگی (2)',
+      icon: '🕌',
       color: '#4CAF50',
-      description: 'شیمی آلی، معدنی، ترمودینامیک و سینتیک',
+      description: 'آموزه‌های دینی، اخلاق، احکام',
       questionCount: 10,
     },
     {
       id: 3,
-      name: 'زیست‌شناسی (2)',
-      icon: '🧬',
-      color: '#00BCD4',
-      description: 'ژنتیک، تکامل، فیزیولوژی گیاهی و جانوری',
-      questionCount: 10,
+      name: 'زبان انگلیسی (2)',
+      icon: '🇬🇧',
+      color: '#F44336',
+      description: 'گرامر، واژگان، درک مطلب',
+      questionCount: 8,
     },
     {
       id: 4,
-      name: 'ریاضی (2)',
-      icon: '📐',
-      color: '#F44336',
-      description: 'مثلثات، ماتریس، احتمال، حد و مشتق',
+      name: 'عربی، زبان قرآن (2)',
+      icon: '📕',
+      color: '#2196F3',
+      description: 'ترجمه، قواعد، تحلیل صرفی',
       questionCount: 8,
     },
     {
       id: 5,
-      name: 'زمین‌شناسی',
-      icon: '🌍',
-      color: '#795548',
-      description: 'ساختمان زمین، سنگ‌ها، کانی‌ها، فسیل‌شناسی',
+      name: 'ریاضی و آمار (2)',
+      icon: '📊',
+      color: '#00BCD4',
+      description: 'آمار توصیفی، احتمال، نمودارها',
       questionCount: 8,
     },
     {
       id: 6,
-      name: 'فارسی (2)',
-      icon: '📝',
+      name: 'اقتصاد',
+      icon: '💰',
       color: '#FF9800',
-      description: 'ادبیات فارسی، آرایه‌ها، دستور زبان',
+      description: 'مفاهیم پایهٔ اقتصاد خرد و کلان',
       questionCount: 8,
     },
     {
       id: 7,
-      name: 'عربی (2)',
+      name: 'تاریخ (2)',
       icon: '📜',
       color: '#795548',
-      description: 'قواعد عربی، ترجمه، متون قرآنی',
+      description: 'تاریخ معاصر ایران و جهان',
       questionCount: 8,
     },
     {
       id: 8,
-      name: 'دین و زندگی (2)',
-      icon: '🕌',
-      color: '#E91E63',
-      description: 'آموزه‌های دینی، اخلاق، احکام',
+      name: 'جغرافیا (2)',
+      icon: '🌍',
+      color: '#00BCD4',
+      description: 'جغرافیای طبیعی و انسانی',
       questionCount: 8,
     },
     {
       id: 9,
-      name: 'زبان انگلیسی (2)',
-      icon: '🇬🇧',
-      color: '#3F51B5',
-      description: 'گرامر، واژگان، درک مطلب، نگارش',
+      name: 'جامعه‌شناسی (2)',
+      icon: '👥',
+      color: '#E91E63',
+      description: 'نظریه‌های جامعه‌شناسی، کنش اجتماعی',
       questionCount: 8,
-    }
+    },
+    {
+      id: 10,
+      name: 'فلسفه (1)',
+      icon: '🧠',
+      color: '#3F51B5',
+      description: 'مبانی فلسفه، منطق، معرفت‌شناسی',
+      questionCount: 8,
+    },
+    {
+      id: 11,
+      name: 'روانشناسی',
+      icon: '🧘',
+      color: '#009688',
+      description: 'رفتار و فرایندهای روانی',
+      questionCount: 8,
+    },
+    {
+      id: 12,
+      name: 'علوم و فنون ادبی (2)',
+      icon: '✍️',
+      color: '#8BC34A',
+      description: 'تاریخ ادبیات، سبک‌شناسی، عروض',
+      questionCount: 8,
+    },
+    {
+      id: 13,
+      name: 'انسان و محیط زیست',
+      icon: '🌿',
+      color: '#607D8B',
+      description: 'تعامل انسان و طبیعت، بحران‌های زیست‌محیطی',
+      questionCount: 8,
+    },
+    {
+      id: 14,
+      name: 'تعلیمات ادیان الهی و اخلاق (2)',
+      icon: '🕊️',
+      color: '#9C27B0',
+      description: 'ویژهٔ اقلیت‌های دینی',
+      questionCount: 8,
+    },
   ];
 
   // ======================== نگاشت نام درس به slug ========================
   const getLessonSlug = (lessonName: string): string => {
     const trimmed = lessonName.trim();
     const slugMap: Record<string, string> = {
-      'فارسی (2)': 'farsi-2-tajrobi',
-      'دین و زندگی (2)': 'din-va-zendegi-2-tajrobi',
-      'زبان انگلیسی (2)': 'english-2-tajrobi',
-      'عربی (2)': 'arabi-2-tajrobi',
-      'فیزیک (2)': 'fizik-2-tajrobi',
-      'شیمی (2)': 'shimi-2-tajrobi',
-      'زیست‌شناسی (2)': 'zist-shenasi-2-tajrobi',
-      'ریاضی (2)': 'riyazi-2-tajrobi',
-      'زمین‌شناسی': 'zamin-shenasi-tajrobi',
+      'فارسی (2)': 'farsi-2-ensani',
+      'دین و زندگی (2)': 'din-va-zendegi-2-ensani',
+      'زبان انگلیسی (2)': 'english-2-ensani',
+      'عربی، زبان قرآن (2)': 'arabi-2-ensani',
+      'ریاضی و آمار (2)': 'riyazi-va-amar-2-ensani',
+      'اقتصاد': 'eghtesad-ensani',
+      'تاریخ (2)': 'tarikh-2-ensani',
+      'جغرافیا (2)': 'joghrafia-2-ensani',
+      'جامعه‌شناسی (2)': 'jamee-shenasi-2-ensani',
+      'فلسفه (1)': 'falsafe-1-ensani',
+      'روانشناسی': 'ravanshenasi-ensani',
+      'علوم و فنون ادبی (2)': 'oloom-va-fonoon-2-ensani',
+      'انسان و محیط زیست': 'ensan-va-mohit-zist-ensani',
+      'تعلیمات ادیان الهی و اخلاق (2)': 'talimat-adyan-2-ensani',
     };
     return slugMap[trimmed] || trimmed.replace(/ /g, '-').toLowerCase();
   };
@@ -155,7 +200,8 @@ export default function LessonsPage() {
   // ======================== هندلر کلیک روی درس ========================
   const handleLessonClick = (lessonName: string) => {
     const lessonSlug = getLessonSlug(lessonName);
-    router.push(`/exam/yazdahom/tajrobi/sanjesh/second-half/${lessonSlug}`);
+    // ساخت مسیر داینامیک با پارامترهای فعلی
+    router.push(`/exam/yazdahom/ensani/gozine2/second-half/${lessonSlug}`);
   };
 
   return (
@@ -197,6 +243,7 @@ export default function LessonsPage() {
         <p>📊 پس از اتمام آزمون، درصد شما به همراه پاسخنامه تشریحی نمایش داده می‌شود.</p>
       </div>
 
+      {/* ==================== استایل‌های داخلی ==================== */}
       <style jsx>{`
         .exam-lessons-container {
           min-height: 100vh;

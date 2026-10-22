@@ -88,17 +88,17 @@ export default function Arabi2ChaptersPage() {
   };
 
   const handleLessonClick = (lessonSlug: string) => {
-    router.push(`/exam/davazdahom/tajrobi/ghalamchi/first-half/arabi-3-tajrobi/${lessonSlug}`);
+    router.push(`/exam/davazdahom/tajrobi/gozine2/first-half/arabi-3-tajrobi/${lessonSlug}`);
   };
 
   const handleChapterExamClick = (examSlug: string) => {
-    router.push(`/exam/davazdahom/tajrobi/ghalamchi/first-half/arabi-3-tajrobi/chapter-exam/${examSlug}`);
+    router.push(`/exam/davazdahom/tajrobi/gozine2/first-half/arabi-3-tajrobi/chapter-exam/${examSlug}`);
   };
 
   return (
     <div style={styles.container}>
       <div style={styles.header}>
-        <button onClick={() => router.push('/exam/davazdahom/tajrobi/ghalamchi/first-half')} style={styles.backButton}>
+        <button onClick={() => router.push('/exam/davazdahom/tajrobi/gozine2/first-half')} style={styles.backButton}>
           ← بازگشت به لیست دروس
         </button>
         <h1 style={styles.title}>📖 عربی (3) - پایه دوازدهم ریاضی قلمچی</h1>

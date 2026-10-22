@@ -91,7 +91,7 @@ export default function Fizik2ChaptersPage() {
   };
 
   const handleChapterExamClick = (examSlug: string) => {
-    router.push(`/exam/yazdahom/tajrobi/gozine2/first-half/fizik-2-tajrobi/${examSlug}`);
+    router.push(`/exam/yazdahom/tajrobi/gozine2/first-half/fizik-2-tajrobi/chapter-exam/${examSlug}`);
   };
 
   return (

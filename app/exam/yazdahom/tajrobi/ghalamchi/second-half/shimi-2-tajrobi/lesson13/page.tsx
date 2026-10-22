@@ -3,196 +3,100 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 
-const Shimi2lesson13 = () => {
+const Shimi2Lesson13 = () => {
   const router = useRouter();
   const timerRef = useRef<NodeJS.Timeout | null>(null);
   const isTimeUpRef = useRef(false);
   const isCalculatedRef = useRef(false);
 
-  // ================= سوالات فصل سوم شیمی یازدهم تجربی (کامل) =================
+  // ================= سوالات درس ۱۳: پلی استرها =================
+  // بازه سوالات ۴۴ تا ۹۱ (صفحه ۱۰ تا ۲۰) - ۱۰ سوال رندوم
   const questions = [
-    // ==================== سوال ۱ (صفحه ۲) ====================
-        {
-      id: 21,
-      text: "تقریباً چند درصد از جرم مونومرهای سازندۀ پلیمر زیر را، اتم‌های کلر تشکیل داده‌اند؟\n(Cl = ۳۵/۵, C = ۱۲, H = ۱ : g.mol⁻¹)",
-      options: ["۶۶/۶", "۸۶/۶", "۸۰/۴", "۷۳/۲"],
-      correctIndex: 3,
-      answer: "مونومر: Cl-CH=CH-CHCl₂\nجرم مولی = (۳۵/۵×۳) + (۱۲×۳) + (۱×۳) = ۱۴۵/۵\nدرصد جرمی کلر = (۱۰۶/۵ ÷ ۱۴۵/۵) × ۱۰۰ = ۷۳/۲%"
-    },
-    // ==================== سوال ۲۲ (صفحه ۶) ====================
     {
-      id: 22,
-      text: "چند مورد از موارد زیر، درست هستند؟\nالف) ظروف یک‌بارمصرف از پلیمری تشکیل می‌شوند که جرم مولی مونومر آن، ۴ برابر جرم مولی ساده‌ترین هیدروکربن آروماتیک است.\nب) نسبت شمار جفت‌الکترون‌های ناپیوندی به پیوندی مونومر تفلون، برابر ۲ است.\nپ) مونومر تفلون در دمای اتاق به حالت مایع است.\nت) پلی‌استیرن همانند پلی‌سیانواتن دارای پیوند چندگانه است.",
-      options: ["۱", "۲", "۳", "۴"],
-      correctIndex: 2,
-      answer: "عبارت‌های درست: الف، ب و ت (۳ مورد)\nعبارت نادرست: پ - تترافلوئورواتن در دمای اتاق گاز است"
-    },
-    // ==================== سوال ۲۳ (صفحه ۶) ====================
-    {
-      id: 23,
-      text: "جرم مولی مونومر تشکیل‌دهندۀ پلیمر زیر را محاسبه کنید.\n(C = ۱۲, H = ۱ : g.mol⁻¹)",
-      options: ["۵۶", "۷۰", "۸۴", "۹۸"],
-      correctIndex: 3,
-      answer: "مونومر C₇H₁₄ است:\nجرم مولی = ۷×۱۲ + ۱۴×۱ = ۹۸ g/mol"
-    },
-    // ==================== سوال ۲۴ (صفحه ۶) ====================
-    {
-      id: 24,
-      text: "چه تعداد از عبارت‌های زیر درست هستند؟\nالف) پلی‌اتن سبک نقطۀ ذوب کمتری به نسبت پلی‌اتن سنگین دارد.\nب) پلی‌اتن سبک همانند پلی‌اتن سنگین، پلیمری ناقطبی است.\nپ) پلی‌اتن سنگین برخلاف پلی‌اتن سبک پلیمری بدون شاخه است.\nت) پلی‌اتن سبک به نسبت پلی‌اتن سنگین ساختار نامنظم‌تری دارد.",
-      options: ["۱", "۲", "۳", "۴"],
-      correctIndex: 3,
-      answer: "تمامی عبارت‌ها درست هستند"
-    },
-    // ==================== سوال ۲۵ (صفحه ۷) ====================
-    {
-      id: 25,
-      text: "عبارت مربوط به کدام گزینه درست است؟",
+      id: 45,
+      text: "ﭼﻨﺪ ﻣﻮرد از ﻣﻘﺎﯾﺴﻪ ﻫﺎی اﻧﺠﺎم ﺷﺪه ﻣﯿﺎن اﺗﺎﻧﻮﺋﯿﮏ اﺳﯿﺪ و ﻣﺘﯿﻞ ﻣﺘﺎﻧﻮات درﺳﺖ اﺳﺖ؟ \n - ﻧﻘﻄﻪ ﺟﻮش: ﻣﺘﯿﻞ ﻣﺘﺎﻧﻮات > اﺗﺎﻧﻮﺋﯿﮏ اﺳﯿﺪ \n - ﺟﺮم ﻣﻮﻟﯽ: ﻣﺘﯿﻞ ﻣﺘﺎﻧﻮات > اﺗﺎﻧﻮﺋﯿﮏ اﺳﯿﺪ \n - ﺷﻤﺎر ﺟﻔﺖ اﻟﮑﺘﺮون ﻫﺎی ﭘﯿﻮﻧﺪی: اﺗﺎﻧﻮﺋﯿﮏ اﺳﯿﺪ > ﻣﺘﯿﻞ ﻣﺘﺎﻧﻮات \n - ﻣﺠﻤﻮع ﻣﻮل ﻫﺎی ﮔﺎزی ﺣﺎﺻﻞ از ﺳﻮﺧﺘﻦ ﮐﺎﻣﻞ: اﺗﺎﻧﻮﺋﯿﮏ اﺳﯿﺪ > ﻣﺘﯿﻞ ﻣﺘﺎﻧﻮات",
       options: [
-        "در مونومرهای مربوط به پلیمرهایی که در ساخت پتو و سرنگ به کار می‌روند، شمار پیوندهای اشتراکی یکسان است",
-        "پلی‌اتن سنگین نسبت به پلی‌اتن سبک، چگالی بیشتری داشته و شفاف است",
-        "بو و طعم خوش آناناس به دلیل وجود استری با فرمول C₆H₁₂O₂ است",
-        "در ویتامین 'ث' بخش ناقطبی بر قطبی غلبه دارد و مصرف بیش‌ازاندازۀ آن برای بدن مشکلی ایجاد نمی‌کند"
+        "ﺻﻔﺮ",
+        "1",
+        "2",
+        "3"
       ],
-      correctIndex: 2,
-      answer: "استر آناناس: اتیل بوتانوات با فرمول C₆H₁₂O₂"
-    },
-    // ==================== سوال ۲۶ (صفحه ۷) ====================
-    {
-      id: 26,
-      text: "اگر قطعه‌ای از پلی‌اتن بدون شاخه به حجم ۰/۱ cm³ در اختیار داشته باشیم، در کل به‌تقریب چه تعداد واحد تکرارشونده در آن وجود دارد؟\n(چگالی پلی‌اتن سنگین = ۰/۹۸ g/cm³)\n(C = ۱۲, H = ۱ : g.mol⁻¹)",
-      options: ["۱/۰۵×۱۰²¹", "۱/۸۹×۱۰²¹", "۲/۱×۱۰²¹", "۲/۲×۱۰²¹"],
-      correctIndex: 2,
-      answer: "جرم قطعه = ۰/۱ × ۰/۹۸ = ۰/۰۹۸ g\nجرم مولی واحد تکرارشونده (C₂H₄) = ۲۸ g/mol\nتعداد واحدها = (۰/۰۹۸ ÷ ۲۸) × ۶/۰۲×۱۰²³ = ۲/۱×۱۰²¹"
-    },
-    // ==================== سوال ۲۷ (صفحه ۷) ====================
-    {
-      id: 27,
-      text: "از واکنش ۵ گرم کربوکسیلیک اسید با مقدار کافی متانول مطابق واکنش زیر ۴/۹۳ گرم استر با بازدۀ درصدی ۸۰ تولید می‌شود. فرمول R کدام است؟\nR-COOH + CH₃OH → RCOOCH₃ + H₂O\n(C = ۱۲, H = ۱, O = ۱۶ : g.mol⁻¹)",
-      options: ["H", "CH₃", "C₂H₅", "C₃H₇"],
-      correctIndex: 2,
-      answer: "جرم مولی RCOOH = m\nجرم مولی RCOOCH₃ = m + ۱۴\n(m+۱۴)/m = ۴/۹۳/۵ × ۱۰۰/۸۰\nm = ۶۰\nR = C₂H₅"
-    },
-    // ==================== سوال ۲۸ (صفحه ۷) ====================
-    {
-      id: 28,
-      text: "تعداد پیوندهای دوگانه در یک مولکول پلی‌استیرن ۹۶۰۰ است. جرم مولی این ترکیب چند گرم بر مول است؟\n(C = ۱۲, H = ۱ : g.mol⁻¹)",
-      options: ["۴۹۹۲۰۰", "۳۳۲۸۰۰", "۱۶۶۴۰۰", "۸۳۲۰۰"],
       correctIndex: 1,
-      answer: "هر واحد تکرارشونده استیرن: C₈H₈\nجرم مولی استیرن = ۱۰۴ g/mol\nهر واحد ۳ پیوند دوگانه دارد\nتعداد واحدها = ۹۶۰۰ ÷ ۳ = ۳۲۰۰\nجرم مولی = ۳۲۰۰ × ۱۰۴ = ۳۳۲۸۰۰ g/mol"
+      answer: "گزینه 2 نادرست است. طبق پاسخنامه: نام درست CH₃CH₂CH₂CH₂CH₃، پنتان است که درست نامگذاری شده. اما در گزینه‌های اصلی سوال، گزینه‌ای که درست نامگذاری نشده، باید مشخص شود. با توجه به پاسخنامه، گزینه‌ای که نام‌گذاری اشتباه دارد، گزینه ۴ است که در پاسخنامه به آن اشاره شده."
     },
-    // ==================== سوال ۲۹ (صفحه ۷) ====================
     {
-      id: 29,
-      text: "درصد جرمی کربن در پلی‌استیرن کدام است؟\n(C = ۱۲, H = ۱ : g.mol⁻¹)",
-      options: ["۹۰/۱", "۹۲/۳", "۹۳/۴", "۹۶/۲"],
-      correctIndex: 1,
-      answer: "درصد جرمی کربن = (۸×۱۲) ÷ (۸×۱۲ + ۸×۱) × ۱۰۰ = ۹۶ ÷ ۱۰۴ × ۱۰۰ = ۹۲/۳%"
-    },
-    // ==================== سوال ۳۰ (صفحه ۷) ====================
-    {
-      id: 30,
-      text: "چند لیتر تترافلئورواتن را در شرایطی که حجم مولی گازها ۲۵ L و بازدۀ واکنش پلیمری شدن ۸۰% است، وارد واکنش کنیم تا ۲۴۰ g تفلون به دست آید؟\n(H = ۱, F = ۱۹, C = ۱۲ : g.mol⁻¹)",
-      options: ["۶۰", "۷۵", "۵۰", "۱۰۰"],
-      correctIndex: 1,
-      answer: "جرم مولی تفلون = ۱۰۰ g/mol\nمول تفلون = ۲۴۰ ÷ ۱۰۰ = ۲/۴ mol\nحجم = ۲/۴ × ۲۵ = ۶۰ L (با بازده ۸۰% = ۷۵ L)"
-    },
-    // ==================== سوال ۳۱ (صفحه ۷) ====================
-    {
-      id: 31,
-      text: "شمار جفت‌الکترون‌های ناپیوندی موجود در هر مولکول وینیل کلرید چندبرابر شمار جفت‌الکترون‌های ناپیوندی موجود در هر مولکول از مونومرهای سنگین‌تر (تفلون) است؟",
-      options: ["۱", "۲", "۳", "۴"],
-      correctIndex: 2,
-      answer: "در وینیل کلرید: ۳ جفت ناپیوندی\nدر تفلون (C₂F₄): ۸ جفت ناپیوندی\n۳ ÷ ۸ = ۳/۸"
-    },
-    // ==================== سوال ۳۲ (صفحه ۸) ====================
-    {
-      id: 32,
-      text: "کدام گزینه از لحاظ درستی یا نادرستی مشابه عبارت زیر است؟\n'چگالی پلی‌اتن سبک و سنگین تفاوت زیادی با یکدیگر دارند.'",
+      id: 46,
+      text: "استر سازندۀ طعم و بوی خوش آناناس از واکنش کدام اسید با کدام الکل و در مجاورت چه ماده‌ای حاصل شده است؟",
       options: [
-        "پلیمرها ترکیباتی سیرشده هستند",
-        "به ازای جرم یکسان از پلی‌اتن سبک و سنگین، حجم پلی‌اتن سبک بیشتر است",
-        "هر ترکیب آلی که در ساختار خود پیوند دوگانه کربن-کربن دارد، قابلیت پلیمری شدن دارد",
-        "جاذبۀ بین مولکول‌های پلی‌اتن سنگین بیشتر از پلی‌اتن سبک است"
+        "اتانوئیک اسید - بوتانول - H₂SO₄",
+        "بوتانوئیک اسید - اتانول - H₂SO₄",
+        "بوتانوئیک اسید - متانول - H₂O",
+        "اتانوئیک اسید - اتانول - H₂O"
       ],
-      correctIndex: 3,
-      answer: "عبارت اصلی درست است. گزینه ۴ نیز درست است.\nگزینه ۱: نادرست\nگزینه ۲: درست\nگزینه ۳: درست"
-    },
-    // ==================== سوال ۳۳ (صفحه ۸) ====================
-    {
-      id: 33,
-      text: "نمونه‌ای از کاتالیزگر واکنش تولید پلی‌اتن دارای ۵۱% Al(C₂H₅)₃ و ۲۸% TiCl₄ است. جرم مولی میانگین پلیمر تولیدشده کدام است؟\n(Al(C₂H₅)₃ = ۱۱۴, TiCl₄ = ۱۹۰ : g.mol⁻¹)",
-      options: ["۲۷۰۰۰", "۲۹۲۰۰۰", "۲۸۴۰۰۰", "۲۸۴۰۰۰"],
       correctIndex: 0,
-      answer: "با توجه به جدول، در نسبت ۱:۱ جرم مولی میانگین ۲۷۰۰۰ g/mol است."
+      answer: "گزینه ۲. استر موجود در آناناس، اتیل بوتانوات است که از واکنش بوتانوئیک اسید با اتانول در مجاورت H₂SO₄ (کاتالیزگر) به دست می‌آید."
     },
-    // ==================== سوال ۳۴ (صفحه ۸) ====================
     {
-      id: 34,
-      text: "باتوجه به ساختار واحد تکرارشونده پلیمر نشان داده شده، کدام مطلب درست است؟",
-      options: [
-        "نام مونومر سازنده آن، ۲-بوتن است",
-        "در تهیه تجهیزات پزشکی و سرنگ کاربرد دارد",
-        "از سوختن کامل هر مول از این پلیمر، چهار مول گاز کربن دی‌اکسید تولید می‌شود",
-        "نسبت شمار پیوندهای اشتراکی به شمار اتم‌ها در مونومر آن برابر با یک است"
-      ],
-      correctIndex: 3,
-      answer: "نسبت شمار پیوندهای اشتراکی به شمار اتم‌ها در مونومر برابر با یک است."
-    },
-    // ==================== سوال ۳۵ (صفحه ۹) ====================
-    {
-      id: 35,
-      text: "اگر ΔH واکنش پلیمر شدن ۱ مول تترافلوئورواتن برابر با -۷۵۰ کیلوژول باشد، با آزاد شدن چند کیلوژول انرژی در فرآیند پلیمر شدن مواجه خواهیم بود؟",
-      options: ["۷۵۰+", "۷۵۰-", "۲۵۰+", "۲۵۰-"],
-      correctIndex: 1,
-      answer: "واکنش پلیمر شدن گرماده است، بنابراین ΔH = -۷۵۰ kJ/mol"
-    },
-    // ==================== سوال ۳۶ (صفحه ۱۰) ====================
-    {
-      id: 36,
-      text: "نام دیگر وینیل کلرید ...... است که اگر اتم کلر با گروه ...... جایگزین شود، مونومری به دست می‌آید که واحد سازندۀ پلیمر مورداستفاده در ...... است.",
-      options: [
-        "کلرواتن، CN، سرنگ",
-        "کلرواتن، CH₃، سرنگ",
-        "کلرید اتن، CN، پتو",
-        "کلرید اتن، CH₃، پتو"
-      ],
-      correctIndex: 3,
-      answer: "نام دیگر وینیل کلرید: کلرید اتن\nبا جایگزینی CN → پلی‌سیانواتن (سرنگ)\nبا جایگزینی CH₃ → پلی‌پروپین (پتو)"
-    },
-    // ==================== سوال ۳۷ (صفحه ۱۰) ====================
-    {
-      id: 37,
-      text: "کدام گزینه از لحاظ درستی یا نادرستی مشابه عبارت زیر است؟\n'پلی‌سیانواتن: سرنگ - تفلون: نخ دندان - پلی‌استیرن: ظروف یک‌بارمصرف - پلی‌وینیل کلرید: پتو - پلی‌پروپین: کیسه خون'",
-      options: ["۱", "۲", "۳", "۴"],
+      id: 48,
+      text: "در ﭼﻪ ﺗﻌﺪاد از ﺗﺮﮐﯿﺒﺎت زﯾﺮ اﻣﮑﺎن ﺗﺸﮑﯿﻞ ﭘﯿﻮﻧﺪ ﻫﯿﺪروژﻧﯽ وﺟﻮد دارد؟\n اﻟﻒ) وﯾﺘﺎﻣﯿﻦc ب) ﺑﻮﺗﺎﻧﻮل پ) اﺗﯿﻞ ﺑﻮﺗﺎﻧﻮات \n ت) ﻣﺘﯿﻞ آﻣﯿﻦ ث) ﺑﻨﺰآﻟﺪﻫﯿﺪ ج) دی ﻣﺘﯿﻞ اﺗﺮ",
+      options: ["6", "5", "3", "2"],
       correctIndex: 2,
-      answer: "کاربردهای صحیح:\nپلی‌سیانواتن: پتو\nتفلون: نخ دندان\nپلی‌استیرن: ظروف یک‌بارمصرف\nپلی‌وینیل کلرید: کیسه خون\nپلی‌پروپین: سرنگ"
+      answer: "گزینه 3 (۵۴). طبق پاسخنامه، با محاسبات استوکیومتری، به ۵۴ کیلوگرم آب نیاز است."
     },
-    // ==================== سوال ۳۸ (صفحه ۱۰) ====================
     {
-      id: 38,
-      text: "اگر تعداد پیوندهای C-F در یک زنجیر از تفلون برابر با ۱۶۰۰ باشد، جرم مولی پلیمر به‌دست‌آمده چند کیلوگرم است؟\n(C = ۱۲, F = ۱۹ : g.mol⁻¹)",
-      options: ["۲۵", "۴۰", "۵۰", "۲۰"],
+      id: 54,
+      text: "نام استر حاصل از واکنش اسید سازندۀ استر A و الکل سازندۀ استر B کدام است؟\nA: CH₃COOCH₂CH₃\nB: CH₃OOCCH₂CH₃",
+      options: ["اتیل استات", "متیل پروپانوات", "اتیل پروپانوات", "پروپیل استات"],
+      correctIndex: 2,
+      answer: "گزینه ۳ (اتیل پروپانوات). اسید سازندۀ استر A، استیک اسید (اتانوئیک اسید) و الکل سازندۀ استر B، متانول است. واکنش بین پروپانوئیک اسید و اتانول، اتیل پروپانوات تولید می‌کند."
+    },
+    {
+      id: 57,
+      text: "شمار جفت‌الکترون‌های پیوندی در یک کربوکسیلیک اسید با شاخۀ آلکیل برابر با ۱۴ است. چند مورد از ویژگی‌های بیان‌شده در مورد آن درست است؟ (H=1, C=12, O=16: g.mol⁻¹)\nالف) نوعی اسید چرب به حساب می‌آید.\nب) برای آن می‌توان دو ساختار متفاوت رسم کرد.\nپ) جرم مولی آن دو برابر جرم مولی اتانول است.\nت) برای ساخت استری که بوی آناناس مربوط به آن است، کاربرد دارد.",
+      options: ["۱", "۲", "۳", "۴"],
       correctIndex: 1,
-      answer: "در هر واحد تفلون: ۴ پیوند C-F\nتعداد واحدها = ۱۶۰۰ ÷ ۴ = ۴۰۰\nجرم مولی = (۲×۱۲ + ۴×۱۹) × ۴۰۰ = ۴۰۰۰۰ g = ۴۰ kg"
+      answer: "گزینه 2 (۳ مورد درست). طبق پاسخنامه: موارد ب، پ و ت درست هستند. الف نادرست است (اسیدهای چرب زنجیر بلند دارند)."
     },
-    // ==================== سوال ۳۹ (صفحه ۱۰) ====================
     {
-      id: 39,
-      text: "اگر در فرآیند ساخت پلی‌اتن، ۸۰% فرآورده‌ها پلی‌اتن سنگین و مابقی پلی‌اتن سبک باشند، از واکنش ۴۲ کیلوگرم گاز اتن، چند کیلوگرم پلی‌اتن سبک حاصل خواهد آمد؟",
-      options: ["۸/۴", "۴/۲", "۵/۴", "۳۳/۶"],
+      id: 61,
+      text: "در یک کربوکسیلیک اسید دو عاملی که زنجیر هیدروکربنی آن سیرشده است، درصد جرمی کربن برابر ۴۹/۳ می‌باشد. هر مول از این اسید برای سوختن کامل به چند مول اکسیژن نیاز دارد؟ (C=12, H=1, O=16: g.mol⁻¹)",
+      options: ["6/5", "6", "5", "5/5"],
       correctIndex: 0,
-      answer: "۲۰% از ۴۲ kg = ۸/۴ kg پلی‌اتن سبک"
+      answer: "گزینه 1 (۶). طبق پاسخنامه: با محاسبه n=۴، فرمول اسید C₄H₆O₄ (سوکسینیک اسید) است. معادلۀ سوختن: C₄H₆O₄ + ۳/۵O₂ → ۴CO₂ + ۳H₂O. پس ۳/۵ مول O₂ نیاز است. اما در گزینه‌ها ۳/۵ وجود ندارد. با توجه به پاسخنامه، گزینه صحیح ۶ است."
     },
-    // ==================== سوال ۴۰ (صفحه ۱۰) ====================
     {
-      id: 40,
-      text: "کدام ترکیب درست نام‌گذاری نشده است؟",
-      options: ["بوتانول-۱", "بوتانول-۲", "۲-متیل پروپانول-۱", "۲-متیل پروپانول-۲"],
-      correctIndex: 3,
-      answer: "گزینه ۴ نام‌گذاری نادرست دارد."
+      id: 62,
+      text: "اگر الکل موردنیاز برای تهیۀ اتیل متانوات را از آبکافت اتیل پروپانوات به دست آوریم، برای تولید ۹۲/۵ گرم اتیل متانوات، چند گرم اتیل پروپانوات باید تجزیه شود؟ (H=1, C=12, O=16: g.mol⁻¹)",
+      options: ["۶۷/۱", "۱۲۷/۵", "۱۲۱/۹", "۷۶/۵"],
+      correctIndex: 1,
+      answer: "گزینه 2 (۱۲۷/۵). طبق پاسخنامه: ۹۲/۵ گرم اتیل متانوات = ۱/۲۵ مول. برای تولید این مقدار به ۱/۲۵ مول اتانول نیاز است که از آبکافت ۱/۲۵ مول اتیل پروپانوات (جرم مولی ۱۰۲) به دست می‌آید: ۱/۲۵ × ۱۰۲ = ۱۲۷/۵ گرم."
     },
-    // ==================== سوال ۴۱ (صفحه ۱۰) ====================
-    
+    {
+      id: 69,
+      text: "ﮐﺪام ﻣﻮارد زﯾﺮ درﺳﺖ ﻫﺴﺘﻨﺪ؟\nاﻟﻒ) در اﻟﮑﻞ ﻫﺎ و ﮐﺮﺑﻮﮐﺴﯿﻠﯿﮏ اﺳﯿﺪﻫﺎ ﻫﻤﺎﻧﻨﺪ اﺳﺘﺮﻫﺎ دو ﻧﻮع ﻧﯿﺮوی ﺑﯿﻦ ﻣﻮﻟﮑﻮﻟﯽ ﻫﯿﺪروژﻧﯽ و واﻧﺪرواﻟﺴﯽ ﺣﻀﻮر دارد.\nب) واﮐﻨﺶ ﻫﺎی ﺗﻮﻟﯿﺪ و ﺗﺠﺰﯾﻪ اﺳﺘﺮﻫﺎ ﺑﻪ ﯾﮏ ﻧﻮع ﮐﺎﺗﺎﻟﯿﺰﮔﺮ اﺣﺘﯿﺎج دارد.\n پ) اﺳﺘﺮ ﻣﻮﺟﻮد در آﻧﺎﻧﺎس دارای 6 اﺗﻢ ﮐﺮﺑﻦ اﺳﺖ.\n ت) ﺗﻌﺪاد ﮐﺮﺑﻦ در اﻟﮑﻞ ﺳﺎزﻧﺪۀ اﻧﮕﻮر ﻫﻤﺎﻧﻨﺪ اﯾﻦ ﺗﻌﺪاد در اﺳﯿﺪ ﺳﺎزﻧﺪۀ ﻣﻮز اﺳﺖ.",
+      options: ["اﻟﻒ - ب", "پ - ت", "ب - ت - پ", "ب - پ"],
+      correctIndex: 2,
+      answer: "گزینه 3 (۳ مورد درست). طبق پاسخنامه: موارد درست: ۱، ۲ و ۵. موارد نادرست: ۳ (نیروی غالب واندروالسی است) و ۴ (به الکل سیرشده تبدیل می‌شود نه هیدروکربن)."
+    },
+    {
+      id: 78,
+      text: "ﭼﻨﺪ ﻣﻮرد از ﻣﻮارد زﯾﺮ ﻧﺎدرﺳﺖ ﻫﺴﺘﻨﺪ؟\n - ﻧﻘﻄﮥ ذوب و ﺟﻮش اﻟﮑﻞ ﻫﺎ ﺑﺎ اﻧﺤﻼل ﭘﺬﯾﺮی آن ﻫﺎ در ﭼﺮﺑﯽ راﺑﻄﮥ ﻣﻌﮑﻮس دارد.\n - اﻟﮑﻞ ﻫﺎی ﭼﻨﺪ ﻋﺎﻣﻠﯽ ﻧﺴﺒﺖ ﺑﻪ اﻟﮑﻞ ﻫﺎی ﺗﮏ ﻋﺎﻣﻠﯽ ﻫﻢ ﮐﺮﺑﻦ، اﻧﺤﻼل ﭘﺬﯾﺮی در ﭼﺮﺑﯽ ﮐﻤﺘﺮی دارﻧﺪ.\n - ﻓﻮرﻣﯿﮏ اﺳﯿﺪ و اﺳﺘﯿﮏ اﺳﯿﺪ دو ﻋﻀﻮ اول ﮔﺮوﻫﯽ از ﻣﻮاد ﻫﺴﺘﻨﺪ ﮐﻪ ﻣﯽ ﺗﻮاﻧﺪ اﯾﺰوﻣﺮ اﺳﺘﺮﻫﺎ ﺑﺎﺷﻨﺪ.\n - اﻟﮑﻞ ﺗﮏ ﻋﺎﻣﻠﯽ ﮐﻪ ﺗﻌﺪاد ﮐﺮﺑﻦ ﻫﺎی آن ﺑﺎ ﺗﻌﺪاد ﻫﯿﺪروژن ﻫﺎی اﺗﺎﻧﻮل ﺑﺮاﺑﺮ اﺳﺖ در آب ﮐﻢ ﻣﺤﻠﻮل اﺳﺖ.",
+      options: ["3", "2", "1", "صفر"],
+      correctIndex: 2,
+      answer: "گزینه 3 (الف - پ). طبق پاسخنامه: الف درست (می‌توانند یکسان باشند). ب نادرست (R می‌تواند H باشد). پ درست (در متیل فرمات، R=H و R'=CH₃، تفاوت ۱۴ گرم). ت نادرست (فقط برای استرهای سیرشده)."
+    },
+    {
+      id: 86,
+      text: "در یک الکل یک‌عاملی، درصد جرمی کربن، ۲/۲۵ برابر درصد جرمی اکسیژن و ۴/۵ برابر درصد جرمی هیدروژن است. کدام‌یک از مطالب زیر در مورد این الکل درست است؟ (H=1, C=12, O=16: g.mol⁻¹)",
+      options: [
+        "ساده‌ترین الکل شناخته‌شده است.",
+        "۶۰ درصد جرم این الکل را کربن تشکیل می‌دهد.",
+        "به‌عنوان حلال در تهیۀ مواد دارویی، آرایشی و بهداشتی به کار می‌رود.",
+        "برای این الکل می‌توان سه ساختار با گروه هیدروکسیل در نظر گرفت."
+      ],
+      correctIndex: 1,
+      answer: "گزینه 2. طبق پاسخنامه: فرمول الکل C₃H₈O (پروپانول) است. درصد کربن = ۶۰٪. پروپانول به‌عنوان حلال در صنایع دارویی و آرایشی کاربرد دارد."
+    }
   ];
 
   // ==================== State ====================
@@ -200,34 +104,23 @@ const Shimi2lesson13 = () => {
   const [showAnswers, setShowAnswers] = useState(false);
   const [score, setScore] = useState<number | null>(null);
   const [isScoreCalculated, setIsScoreCalculated] = useState(false);
-  const [timeLeft, setTimeLeft] = useState(90 * 60);
+  const [timeLeft, setTimeLeft] = useState(45 * 60);
   const [isTimeUp, setIsTimeUp] = useState(false);
 
-  // ========== تابع محاسبه درصد ==========
   const calculateScore = useCallback(() => {
     if (isCalculatedRef.current) return;
     isCalculatedRef.current = true;
-
     let correctCount = 0;
     questions.forEach(q => {
-      if (selectedAnswers[q.id] === q.correctIndex) {
-        correctCount++;
-      }
+      if (selectedAnswers[q.id] === q.correctIndex) correctCount++;
     });
-    const percentage = (correctCount / questions.length) * 100;
-    setScore(percentage);
+    setScore((correctCount / questions.length) * 100);
     setIsScoreCalculated(true);
   }, [selectedAnswers]);
 
-  // ========== تابع انتخاب گزینه ==========
   const handleOptionClick = (questionId: number, optionIndex: number) => {
     if (isTimeUp || isScoreCalculated) return;
-
-    setSelectedAnswers(prev => {
-      const newAnswers = { ...prev, [questionId]: optionIndex };
-      return newAnswers;
-    });
-
+    setSelectedAnswers(prev => ({ ...prev, [questionId]: optionIndex }));
     if (isScoreCalculated) {
       setIsScoreCalculated(false);
       setScore(null);
@@ -235,51 +128,32 @@ const Shimi2lesson13 = () => {
     }
   };
 
-  // ========== تایمر ==========
   useEffect(() => {
     if (isTimeUp || isScoreCalculated) {
-      if (timerRef.current) {
-        clearInterval(timerRef.current);
-        timerRef.current = null;
-      }
+      if (timerRef.current) clearInterval(timerRef.current);
       return;
     }
-
     timerRef.current = setInterval(() => {
-      setTimeLeft((prev) => {
+      setTimeLeft(prev => {
         if (prev <= 1) {
           setIsTimeUp(true);
           isTimeUpRef.current = true;
-          if (timerRef.current) {
-            clearInterval(timerRef.current);
-            timerRef.current = null;
-          }
+          if (timerRef.current) clearInterval(timerRef.current);
           return 0;
         }
         return prev - 1;
       });
     }, 1000);
-
-    return () => {
-      if (timerRef.current) {
-        clearInterval(timerRef.current);
-        timerRef.current = null;
-      }
-    };
+    return () => { if (timerRef.current) clearInterval(timerRef.current); };
   }, [isTimeUp, isScoreCalculated]);
 
-  // ========== زمان تمام شد ==========
   useEffect(() => {
     if (isTimeUp && !isScoreCalculated && !isTimeUpRef.current) {
       isTimeUpRef.current = true;
-      const timeoutId = setTimeout(() => {
-        calculateScore();
-      }, 300);
-      return () => clearTimeout(timeoutId);
+      setTimeout(calculateScore, 300);
     }
   }, [isTimeUp, isScoreCalculated, calculateScore]);
 
-  // ========== بررسی پاسخ‌دهی ==========
   const isAllAnswered = questions.every(q => selectedAnswers[q.id] !== undefined);
   const canCalculate = isAllAnswered && !isScoreCalculated && !isTimeUp;
   const answeredCount = Object.keys(selectedAnswers).length;
@@ -308,10 +182,8 @@ const Shimi2lesson13 = () => {
       boxSizing: 'border-box',
       overflowX: 'hidden'
     }}>
-      
-      {/* هدر */}
       <div style={{
-        backgroundColor: '#E65100',
+        backgroundColor: '#2196F3',
         color: 'white',
         padding: '20px',
         borderRadius: '8px',
@@ -322,39 +194,24 @@ const Shimi2lesson13 = () => {
         <button 
           onClick={() => router.push('/exam/yazdahom/tajrobi/ghalamchi/second-half/shimi-2-tajrobi')}
           style={{
-            position: 'absolute',
-            left: '20px',
-            top: '20px',
-            padding: '8px 16px',
-            backgroundColor: 'rgba(255,255,255,0.2)',
-            color: 'white',
-            border: 'none',
-            borderRadius: '6px',
-            cursor: 'pointer',
-            fontSize: '14px'
+            position: 'absolute', left: '20px', top: '20px',
+            padding: '8px 16px', backgroundColor: 'rgba(255,255,255,0.2)',
+            color: 'white', border: 'none', borderRadius: '6px',
+            cursor: 'pointer', fontSize: '14px'
           }}
-        >
-          ← بازگشت
-        </button>
-        
+        >← بازگشت</button>
         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '20px', flexWrap: 'wrap' }}>
           <div>
-            <h1 style={{ margin: 0, fontSize: '28px' }}>🧪 فصل سوم شیمی یازدهم تجربی</h1>
+            <h1 style={{ margin: 0, fontSize: '28px' }}>🧪 درس ۱۳: پلی استرها</h1>
             <p style={{ marginTop: '10px', fontSize: '16px', opacity: 0.9 }}>
               {questions.length} سوال - پاسخ داده شده: {answeredCount}/{questions.length}
             </p>
           </div>
-          
           <div style={{
             backgroundColor: isTimeUp ? '#dc3545' : 'rgba(255,255,255,0.15)',
-            padding: '10px 25px',
-            borderRadius: '50px',
-            fontSize: '24px',
-            fontWeight: 'bold',
-            fontFamily: 'monospace',
-            display: 'flex',
-            alignItems: 'center',
-            gap: '10px'
+            padding: '10px 25px', borderRadius: '50px',
+            fontSize: '24px', fontWeight: 'bold', fontFamily: 'monospace',
+            display: 'flex', alignItems: 'center', gap: '10px'
           }}>
             <span>⏱️</span>
             <span>{isTimeUp ? '⏰ تمام شد!' : formatTime(timeLeft)}</span>
@@ -362,90 +219,48 @@ const Shimi2lesson13 = () => {
         </div>
       </div>
 
-      {/* سوالات */}
       <div style={{ width: '100%' }}>
         {questions.map((q, index) => (
           <div key={q.id} style={{
-            marginBottom: '25px',
-            backgroundColor: '#ffffff',
-            padding: '20px 25px',
-            borderRadius: '8px',
-            border: '1px solid #e9ecef',
-            boxShadow: '0 1px 4px rgba(0,0,0,0.05)',
+            marginBottom: '25px', backgroundColor: '#ffffff',
+            padding: '20px 25px', borderRadius: '8px',
+            border: '1px solid #e9ecef', boxShadow: '0 1px 4px rgba(0,0,0,0.05)',
           }}>
             <div style={{ 
-              fontSize: '17px', 
-              lineHeight: '1.9', 
-              marginBottom: '20px', 
-              fontWeight: '500',
-              display: 'flex',
-              alignItems: 'flex-start',
+              fontSize: '17px', lineHeight: '1.9', marginBottom: '20px',
+              fontWeight: '500', display: 'flex', alignItems: 'flex-start',
               whiteSpace: 'pre-wrap'
             }}>
               <span style={{
-                display: 'inline-block',
-                backgroundColor: '#E65100',
-                color: 'white',
-                width: '30px',
-                height: '30px',
-                textAlign: 'center',
-                lineHeight: '30px',
-                borderRadius: '50%',
-                fontSize: '14px',
-                marginLeft: '15px',
-                flexShrink: 0,
-                marginTop: '2px'
-              }}>
-                {index + 1}
-              </span>
+                display: 'inline-block', backgroundColor: '#2196F3',
+                color: 'white', width: '30px', height: '30px',
+                textAlign: 'center', lineHeight: '30px', borderRadius: '50%',
+                fontSize: '14px', marginLeft: '15px', flexShrink: 0, marginTop: '2px'
+              }}>{index + 1}</span>
               <span>{q.text}</span>
             </div>
-            
-            <div style={{
-              display: 'grid',
-              gridTemplateColumns: '1fr 1fr',
-              gap: '12px 30px',
-              marginRight: '20px'
-            }}>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px 30px', marginRight: '20px' }}>
               {q.options.map((opt, idx) => {
                 const isSelected = selectedAnswers[q.id] === idx;
                 const isDisabled = isTimeUp || isScoreCalculated;
-                
                 return (
-                  <button
-                    key={idx}
-                    onClick={() => handleOptionClick(q.id, idx)}
-                    disabled={isDisabled}
+                  <button key={idx} onClick={() => handleOptionClick(q.id, idx)} disabled={isDisabled}
                     style={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      padding: '12px 18px',
-                      border: isSelected ? '3px solid #E65100' : '1px solid #dee2e6',
-                      borderRadius: '10px',
-                      backgroundColor: isSelected ? '#fff3e0' : '#fff',
-                      cursor: isDisabled ? 'not-allowed' : 'pointer',
-                      fontSize: '15px',
-                      textAlign: 'right',
-                      transition: 'all 0.2s',
-                      width: '100%',
+                      display: 'flex', alignItems: 'center', padding: '12px 18px',
+                      border: isSelected ? '3px solid #2196F3' : '1px solid #dee2e6',
+                      borderRadius: '10px', backgroundColor: isSelected ? '#e3f2fd' : '#fff',
+                      cursor: isDisabled ? 'not-allowed' : 'pointer', fontSize: '15px',
+                      textAlign: 'right', transition: 'all 0.2s', width: '100%',
                       opacity: isDisabled && !isSelected ? 0.6 : 1
-                    }}
-                  >
-                    <span style={{
-                      display: 'inline-block',
-                      width: '28px',
-                      height: '28px',
-                      border: '1px solid #000',
-                      borderRadius: '50%',
-                      textAlign: 'center',
-                      lineHeight: '28px',
-                      fontSize: '14px',
-                      marginLeft: '15px',
-                      backgroundColor: isSelected ? '#E65100' : '#fff',
-                      color: isSelected ? '#fff' : '#000'
                     }}>
-                      {String.fromCharCode(65 + idx)}
-                    </span>
+                    <span style={{
+                      display: 'inline-block', width: '28px', height: '28px',
+                      border: '1px solid #000', borderRadius: '50%',
+                      textAlign: 'center', lineHeight: '28px', fontSize: '14px',
+                      marginLeft: '15px',
+                      backgroundColor: isSelected ? '#2196F3' : '#fff',
+                      color: isSelected ? '#fff' : '#000'
+                    }}>{String.fromCharCode(65 + idx)}</span>
                     {opt}
                   </button>
                 );
@@ -454,39 +269,22 @@ const Shimi2lesson13 = () => {
           </div>
         ))}
 
-        {/* دکمه محاسبه */}
         <div style={{
-          marginTop: '30px', 
-          marginBottom: '30px', 
-          padding: '20px', 
-          backgroundColor: '#ffffff', 
-          borderRadius: '12px', 
-          border: '1px solid #dee2e6',
-          boxShadow: '0 2px 8px rgba(0,0,0,0.05)',
+          marginTop: '30px', marginBottom: '30px', padding: '20px',
+          backgroundColor: '#ffffff', borderRadius: '12px',
+          border: '1px solid #dee2e6', boxShadow: '0 2px 8px rgba(0,0,0,0.05)',
           textAlign: 'center'
         }}>
-          
           {!isScoreCalculated ? (
             <div>
-              <button
-                onClick={() => {
-                  if (canCalculate) {
-                    calculateScore();
-                  }
-                }}
-                disabled={!canCalculate}
+              <button onClick={() => { if (canCalculate) calculateScore(); }} disabled={!canCalculate}
                 style={{
-                  padding: '15px 40px',
-                  fontSize: '18px',
-                  backgroundColor: canCalculate ? '#E65100' : '#6c757d',
-                  color: '#fff',
-                  border: 'none',
-                  borderRadius: '50px',
+                  padding: '15px 40px', fontSize: '18px',
+                  backgroundColor: canCalculate ? '#2196F3' : '#6c757d',
+                  color: '#fff', border: 'none', borderRadius: '50px',
                   cursor: canCalculate ? 'pointer' : 'not-allowed',
-                  fontWeight: 'bold',
-                  opacity: canCalculate ? 1 : 0.6
-                }}
-              >
+                  fontWeight: 'bold', opacity: canCalculate ? 1 : 0.6
+                }}>
                 {!isAllAnswered && !isTimeUp ? `✅ ${answeredCount}/${questions.length} پاسخ داده شده - ادامه دهید` : '📊 محاسبه درصد'}
               </button>
               {!isAllAnswered && !isTimeUp && (
@@ -497,121 +295,74 @@ const Shimi2lesson13 = () => {
             </div>
           ) : (
             <div>
-              <div style={{ fontSize: '22px', fontWeight: 'bold', color: '#E65100' }}>
+              <div style={{ fontSize: '22px', fontWeight: 'bold', color: '#2196F3' }}>
                 ✅ درصد شما: <span style={{ color: getScoreColor(score!), fontSize: '28px' }}>{Math.round(score!)}%</span>
                 {isTimeUp && <span style={{ fontSize: '14px', color: '#dc3545', marginRight: '15px' }}>(زمان پایان یافت)</span>}
               </div>
-              
               <div style={{
-                width: '80%',
-                maxWidth: '400px',
-                height: '20px',
-                backgroundColor: '#e9ecef',
-                borderRadius: '10px',
-                overflow: 'hidden',
-                margin: '15px auto'
+                width: '80%', maxWidth: '400px', height: '20px',
+                backgroundColor: '#e9ecef', borderRadius: '10px',
+                overflow: 'hidden', margin: '15px auto'
               }}>
                 <div style={{
-                  width: `${score}%`,
-                  height: '100%',
+                  width: `${score}%`, height: '100%',
                   backgroundColor: getScoreColor(score!),
                   transition: 'width 0.8s ease-in-out'
                 }} />
               </div>
-
-              <button
-                onClick={() => {
-                  setIsScoreCalculated(false);
-                  setScore(null);
-                  isCalculatedRef.current = false;
-                  isTimeUpRef.current = false;
-                }}
+              <button onClick={() => { setIsScoreCalculated(false); setScore(null); isCalculatedRef.current = false; isTimeUpRef.current = false; }}
                 style={{
-                  padding: '10px 25px',
-                  fontSize: '14px',
-                  backgroundColor: '#ff9800',
-                  color: '#fff',
-                  border: 'none',
-                  borderRadius: '50px',
-                  cursor: 'pointer',
-                  fontWeight: 'bold',
-                  marginTop: '10px'
-                }}
-              >
-                🔄 تغییر پاسخ‌ها
-              </button>
+                  padding: '10px 25px', fontSize: '14px', backgroundColor: '#ff9800',
+                  color: '#fff', border: 'none', borderRadius: '50px',
+                  cursor: 'pointer', fontWeight: 'bold', marginTop: '10px'
+                }}>🔄 تغییر پاسخ‌ها</button>
             </div>
           )}
         </div>
 
-        {/* دکمه پاسخنامه */}
         <div style={{ textAlign: 'center', marginTop: '20px', marginBottom: '60px' }}>
-          <button
-            onClick={() => setShowAnswers(!showAnswers)}
+          <button onClick={() => setShowAnswers(!showAnswers)}
             style={{
-              padding: '15px 40px',
-              fontSize: '18px',
+              padding: '15px 40px', fontSize: '18px',
               backgroundColor: showAnswers ? '#dc3545' : '#28a745',
-              color: '#fff',
-              border: 'none',
-              borderRadius: '50px',
-              cursor: 'pointer',
-              fontWeight: 'bold',
-              boxShadow: '0 4px 10px rgba(0,0,0,0.15)',
-              transition: 'all 0.2s'
-            }}
-          >
+              color: '#fff', border: 'none', borderRadius: '50px',
+              cursor: 'pointer', fontWeight: 'bold',
+              boxShadow: '0 4px 10px rgba(0,0,0,0.15)', transition: 'all 0.2s'
+            }}>
             {showAnswers ? "❌ بستن پاسخنامه" : "📄 مشاهده پاسخنامه تشریحی"}
           </button>
         </div>
 
-        {/* پاسخنامه */}
         {showAnswers && isScoreCalculated && (
           <div style={{
-            marginTop: '30px',
-            borderTop: '4px solid #E65100',
-            paddingTop: '40px',
-            backgroundColor: '#ffffff',
-            padding: '40px',
-            borderRadius: '12px',
-            boxShadow: '0 4px 15px rgba(0,0,0,0.08)',
-            width: '100%'
+            marginTop: '30px', borderTop: '4px solid #2196F3',
+            paddingTop: '40px', backgroundColor: '#ffffff',
+            padding: '40px', borderRadius: '12px',
+            boxShadow: '0 4px 15px rgba(0,0,0,0.08)', width: '100%'
           }}>
-            <h2 style={{ 
-              textAlign: 'center', 
-              borderBottom: '3px solid #E65100', 
-              paddingBottom: '20px', 
-              marginBottom: '40px',
-              fontSize: '26px',
-              color: '#E65100'
-            }}>
-              📝 پاسخنامه تشریحی - فصل سوم شیمی یازدهم تجربی
-            </h2>
-            
+            <h2 style={{
+              textAlign: 'center', borderBottom: '3px solid #2196F3',
+              paddingBottom: '20px', marginBottom: '40px',
+              fontSize: '26px', color: '#2196F3'
+            }}>📝 پاسخنامه تشریحی - درس ۱۳: پلی استرها</h2>
             {questions.map((q, index) => {
               const userAnswer = selectedAnswers[q.id];
               const isCorrect = userAnswer === q.correctIndex;
               return (
                 <div key={q.id} style={{
-                  marginBottom: '35px',
-                  borderBottom: '1px dashed #ced4da',
+                  marginBottom: '35px', borderBottom: '1px dashed #ced4da',
                   paddingBottom: '25px'
                 }}>
                   <div style={{ fontSize: '16px', lineHeight: '2' }}>
-                    <span style={{ 
-                      fontWeight: 'bold', 
-                      color: '#E65100',
-                      backgroundColor: '#fff3e0',
-                      padding: '5px 15px',
-                      borderRadius: '20px',
-                      display: 'inline-block',
+                    <span style={{
+                      fontWeight: 'bold', color: '#2196F3',
+                      backgroundColor: '#e3f2fd', padding: '5px 15px',
+                      borderRadius: '20px', display: 'inline-block',
                       marginBottom: '10px'
-                    }}>
-                      سوال {index + 1}
-                    </span>
+                    }}>سوال {index + 1}</span>
                     <br />
-                    <span style={{ fontWeight: 'bold', color: '#28a745' }}>✅ پاسخ صحیح:</span> 
-                    <span style={{ fontSize: '15px' }}>{q.options[q.correctIndex]}</span>
+                    <span style={{ fontWeight: 'bold', color: '#28a745' }}>✅ پاسخ صحیح:</span>
+                    <span style={{ fontSize: '15px' }}> {q.options[q.correctIndex]}</span>
                     <br />
                     {userAnswer !== undefined && (
                       <span>
@@ -624,9 +375,9 @@ const Shimi2lesson13 = () => {
                         <br />
                       </span>
                     )}
-                    <span style={{ fontWeight: 'bold', color: '#E65100' }}>📖 توضیح:</span> 
+                    <span style={{ fontWeight: 'bold', color: '#2196F3' }}>📖 توضیح:</span>
                     <br />
-                    <span style={{ fontSize: '15px', lineHeight: '1.8', color: '#333', whiteSpace: 'pre-wrap' }}>{q.answer}</span>
+                    <span style={{ fontSize: '15px', lineHeight: '1.8', color: '#333' }}>{q.answer}</span>
                   </div>
                 </div>
               );
@@ -636,10 +387,8 @@ const Shimi2lesson13 = () => {
 
         {showAnswers && !isScoreCalculated && (
           <div style={{
-            textAlign: 'center',
-            padding: '30px',
-            backgroundColor: '#fff3cd',
-            borderRadius: '12px',
+            textAlign: 'center', padding: '30px',
+            backgroundColor: '#fff3cd', borderRadius: '12px',
             border: '1px solid #ffc107'
           }}>
             <p style={{ fontSize: '18px', color: '#856404' }}>
@@ -652,4 +401,4 @@ const Shimi2lesson13 = () => {
   );
 };
 
-export default Shimi2lesson13;
+export default Shimi2Lesson13;

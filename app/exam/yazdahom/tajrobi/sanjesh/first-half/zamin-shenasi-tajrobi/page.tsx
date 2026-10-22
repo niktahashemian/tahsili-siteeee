@@ -1,7 +1,9 @@
 'use client';
+import Link from 'next/link';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 
+// تعریف تایپ برای درس
 interface Lesson {
   id: number;
   name: string;
@@ -10,6 +12,7 @@ interface Lesson {
   slug: string;
 }
 
+// تعریف تایپ برای فصل
 interface Chapter {
   id: number;
   name: string;
@@ -21,79 +24,234 @@ interface Chapter {
   examQuestionCount: number;
 }
 
-export default function GeologyChaptersPage() {
+export default function JameeShenasi2ChaptersPage() {
   const router = useRouter();
   const [openChapter, setOpenChapter] = useState<number | null>(null);
 
+  // ======================== ساختار فصل‌ها و درس‌های کتاب جامعه‌شناسی (2) یازدهم انسانی ========================
   const chapters: Chapter[] = [
     {
       id: 1,
-      name: 'فصل اول: زمین و تحولات آن',
-      icon: '🌍',
-      color: '#1A237E',
+      name: 'فصل اول: مبانی جامعه‌شناسی',
+      icon: '👥',
+      color: '#E91E63',
       examSlug: 'chapter1-exam',
-      examName: 'آزمون جامع فصل اول: زمین و تحولات آن',
+      examName: 'آزمون جامع فصل اول: مبانی جامعه‌شناسی',
       examQuestionCount: 25,
       lessons: [
-        { id: 1, name: 'درس ۱-۱: زمین و تاریخچه آن', description: 'پیدایش زمین، سن زمین، نظریه‌های شکل‌گیری زمین', questionCount: 12, slug: 'lesson1' },
-        { id: 2, name: 'درس ۱-۲: ساختار درونی زمین', description: 'پوسته، گوشته، هسته، جریان‌های همرفتی', questionCount: 14, slug: 'lesson2' },
-        { id: 3, name: 'درس ۱-۳: زمین‌شناسی و تغییرات', description: 'عوامل تغییردهنده پوسته، فرسایش و رسوب‌گذاری', questionCount: 12, slug: 'lesson3' },
+        { 
+          id: 1, 
+          name: 'درس اول: جامعه‌شناسی چیست؟', 
+          description: 'تعریف جامعه‌شناسی، موضوع و روش مطالعه، اهمیت جامعه‌شناسی', 
+          questionCount: 12, 
+          slug: 'lesson1' 
+        },
+        { 
+          id: 2, 
+          name: 'درس دوم: جامعه و فرهنگ', 
+          description: 'تعریف جامعه، فرهنگ، ویژگی‌ها و اجزای فرهنگ', 
+          questionCount: 10, 
+          slug: 'lesson2' 
+        },
+        { 
+          id: 3, 
+          name: 'درس سوم: هویت و اجتماعی شدن', 
+          description: 'فرایند جامعه‌پذیری، هویت فردی و اجتماعی، عوامل اجتماعی‌شدن', 
+          questionCount: 10, 
+          slug: 'lesson3' 
+        },
       ]
     },
     {
       id: 2,
-      name: 'فصل دوم: سنگ‌ها و کانی‌ها',
-      icon: '🪨',
-      color: '#1565C0',
+      name: 'فصل دوم: نهادهای اجتماعی',
+      icon: '🏛️',
+      color: '#4CAF50',
       examSlug: 'chapter2-exam',
-      examName: 'آزمون جامع فصل دوم: سنگ‌ها و کانی‌ها',
+      examName: 'آزمون جامع فصل دوم: نهادهای اجتماعی',
       examQuestionCount: 28,
       lessons: [
-        { id: 4, name: 'درس ۲-۱: کانی‌ها و ویژگی‌های آنها', description: 'تعریف کانی، خواص فیزیکی و شیمیایی کانی‌ها', questionCount: 12, slug: 'lesson4' },
-        { id: 5, name: 'درس ۲-۲: سنگ‌های آذرین', description: 'انواع سنگ‌های آذرین، فرآیند تشکیل، طبقه‌بندی', questionCount: 10, slug: 'lesson5' },
-        { id: 6, name: 'درس ۲-۳: سنگ‌های رسوبی و دگرگونی', description: 'تشکیل سنگ‌های رسوبی، سنگ‌های دگرگونی و تغییرات آنها', questionCount: 12, slug: 'lesson6' },
-        { id: 7, name: 'درس ۲-۴: چرخه سنگ‌ها', description: 'چرخه سنگ‌ها و تبدیل انواع سنگ به یکدیگر', questionCount: 10, slug: 'lesson7' },
+        { 
+          id: 4, 
+          name: 'درس اول: خانواده به عنوان نهاد اجتماعی', 
+          description: 'تعریف خانواده، انواع خانواده، کارکردهای خانواده', 
+          questionCount: 12, 
+          slug: 'lesson4' 
+        },
+        { 
+          id: 5, 
+          name: 'درس دوم: آموزش و پرورش', 
+          description: 'نقش آموزش در جامعه، آموزش رسمی و غیررسمی', 
+          questionCount: 10, 
+          slug: 'lesson5' 
+        },
+        { 
+          id: 6, 
+          name: 'درس سوم: دین و مذهب', 
+          description: 'نقش دین در جامعه، انواع دین، کارکردهای دین', 
+          questionCount: 10, 
+          slug: 'lesson6' 
+        },
+        { 
+          id: 7, 
+          name: 'درس چهارم: اقتصاد و سیاست', 
+          description: 'نهاد اقتصاد، نهاد سیاست، تعامل آنها', 
+          questionCount: 8, 
+          slug: 'lesson7' 
+        },
       ]
     },
     {
       id: 3,
-      name: 'فصل سوم: فسیل‌ها و تاریخ زمین',
-      icon: '🦕',
-      color: '#E65100',
+      name: 'فصل سوم: کنش‌ها و روابط اجتماعی',
+      icon: '🤝',
+      color: '#2196F3',
       examSlug: 'chapter3-exam',
-      examName: 'آزمون جامع فصل سوم: فسیل‌ها و تاریخ زمین',
+      examName: 'آزمون جامع فصل سوم: کنش‌ها و روابط اجتماعی',
       examQuestionCount: 25,
       lessons: [
-        { id: 8, name: 'درس ۳-۱: فسیل‌ها و انواع آنها', description: 'تعریف فسیل، انواع فسیل‌ها، فرآیند فسیل‌شدن', questionCount: 12, slug: 'lesson8' },
-        { id: 9, name: 'درس ۳-۲: زمین‌شناسی تاریخی', description: 'زمان‌بندی زمین‌شناسی، دوره‌های زمین‌شناسی', questionCount: 10, slug: 'lesson9' },
-        { id: 10, name: 'درس ۳-۳: تغییرات اقلیمی در طول تاریخ', description: 'تغییرات آب و هوایی، عصرهای یخبندان', questionCount: 10, slug: 'lesson10' },
+        { 
+          id: 8, 
+          name: 'درس اول: کنش متقابل اجتماعی', 
+          description: 'تعریف کنش متقابل، انواع روابط اجتماعی، شبکه‌های اجتماعی', 
+          questionCount: 12, 
+          slug: 'lesson8' 
+        },
+        { 
+          id: 9, 
+          name: 'درس دوم: گروه‌ها و سازمان‌های اجتماعی', 
+          description: 'انواع گروه‌های اجتماعی، سازمان‌های رسمی و غیررسمی', 
+          questionCount: 10, 
+          slug: 'lesson9' 
+        },
+        { 
+          id: 10, 
+          name: 'درس سوم: طبقه و نابرابری اجتماعی', 
+          description: 'تعریف طبقه اجتماعی، انواع نابرابری، تحرک اجتماعی', 
+          questionCount: 10, 
+          slug: 'lesson10' 
+        },
       ]
     },
     {
       id: 4,
-      name: 'فصل چهارم: منابع و انرژی زمین',
-      icon: '⛏️',
-      color: '#4CAF50',
+      name: 'فصل چهارم: تغییرات و تحولات اجتماعی',
+      icon: '🔄',
+      color: '#FF9800',
       examSlug: 'chapter4-exam',
-      examName: 'آزمون جامع فصل چهارم: منابع و انرژی زمین',
+      examName: 'آزمون جامع فصل چهارم: تغییرات و تحولات اجتماعی',
       examQuestionCount: 30,
       lessons: [
-        { id: 11, name: 'درس ۴-۱: منابع معدنی', description: 'فلزات، کانی‌های صنعتی، استخراج معادن', questionCount: 12, slug: 'lesson11' },
-        { id: 12, name: 'درس ۴-۲: منابع انرژی', description: 'نفت، گاز، زغال‌سنگ، انرژی‌های تجدیدپذیر', questionCount: 14, slug: 'lesson12' },
-        { id: 13, name: 'درس ۴-۳: آب‌های زیرزمینی', description: 'منابع آب، سفره‌های آب زیرزمینی، چرخه آب', questionCount: 10, slug: 'lesson13' },
-        { id: 14, name: 'درس ۴-۴: حفاظت از منابع زمین', description: 'مدیریت منابع، آلودگی و راه‌های حفاظت', questionCount: 10, slug: 'lesson14' },
+        { 
+          id: 11, 
+          name: 'درس اول: نظریه‌های تغییر اجتماعی', 
+          description: 'نظریه‌های تکاملی، مارکسیستی، کارکردگرایی و تضاد', 
+          questionCount: 12, 
+          slug: 'lesson11' 
+        },
+        { 
+          id: 12, 
+          name: 'درس دوم: عوامل تغییر اجتماعی', 
+          description: 'عوامل درون‌زا و برون‌زا، فناوری، جمعیت، فرهنگ', 
+          questionCount: 10, 
+          slug: 'lesson12' 
+        },
+        { 
+          id: 13, 
+          name: 'درس سوم: توسعه و مدرنیزاسیون', 
+          description: 'مفهوم توسعه، مدرنیزاسیون، توسعه پایدار', 
+          questionCount: 10, 
+          slug: 'lesson13' 
+        },
+        { 
+          id: 14, 
+          name: 'درس چهارم: جهانی‌سازی و پیامدها', 
+          description: 'جهانی‌سازی، ابعاد فرهنگی، اقتصادی و سیاسی', 
+          questionCount: 10, 
+          slug: 'lesson14' 
+        },
       ]
     },
     {
       id: 5,
-      name: '🏆 آزمون جامع کل کتاب زمین‌شناسی',
+      name: 'فصل پنجم: کنترل و انحراف اجتماعی',
+      icon: '⚖️',
+      color: '#9C27B0',
+      examSlug: 'chapter5-exam',
+      examName: 'آزمون جامع فصل پنجم: کنترل و انحراف اجتماعی',
+      examQuestionCount: 25,
+      lessons: [
+        { 
+          id: 15, 
+          name: 'درس اول: هنجارها و ارزش‌های اجتماعی', 
+          description: 'تعریف هنجار، ارزش، انواع هنجارها و کارکردها', 
+          questionCount: 12, 
+          slug: 'lesson15' 
+        },
+        { 
+          id: 16, 
+          name: 'درس دوم: انحراف اجتماعی', 
+          description: 'تعریف انحراف، نظریه‌های انحراف، رفتارهای انحرافی', 
+          questionCount: 10, 
+          slug: 'lesson16' 
+        },
+        { 
+          id: 17, 
+          name: 'درس سوم: کنترل اجتماعی', 
+          description: 'کنترل رسمی و غیررسمی، نقش نهادها در کنترل', 
+          questionCount: 10, 
+          slug: 'lesson17' 
+        },
+      ]
+    },
+    {
+      id: 6,
+      name: 'فصل ششم: روش‌های تحقیق در جامعه‌شناسی',
+      icon: '🔬',
+      color: '#00BCD4',
+      examSlug: 'chapter6-exam',
+      examName: 'آزمون جامع فصل ششم: روش‌های تحقیق در جامعه‌شناسی',
+      examQuestionCount: 28,
+      lessons: [
+        { 
+          id: 18, 
+          name: 'درس اول: مبانی روش‌شناسی', 
+          description: 'روش علمی، روش‌های تحقیق کمی و کیفی', 
+          questionCount: 12, 
+          slug: 'lesson18' 
+        },
+        { 
+          id: 19, 
+          name: 'درس دوم: روش‌های جمع‌آوری داده‌ها', 
+          description: 'پرسشنامه، مصاحبه، مشاهده، اسناد و مدارک', 
+          questionCount: 10, 
+          slug: 'lesson19' 
+        },
+        { 
+          id: 20, 
+          name: 'درس سوم: تحلیل و تفسیر داده‌ها', 
+          description: 'تحلیل کمی، تحلیل کیفی، تفسیر نتایج', 
+          questionCount: 10, 
+          slug: 'lesson20' 
+        },
+      ]
+    },
+    {
+      id: 7,
+      name: '🎯 آزمون جامع کل کتاب جامعه‌شناسی (2)',
       icon: '🏆',
       color: '#FF6B6B',
       examSlug: 'final-exam',
-      examName: 'آزمون جامع کل کتاب زمین‌شناسی',
-      examQuestionCount: 60,
+      examName: 'آزمون جامع کل کتاب جامعه‌شناسی (2)',
+      examQuestionCount: 50,
       lessons: [
-        { id: 15, name: '📚 کل دروس کتاب زمین‌شناسی', description: 'شامل تمام مباحث: زمین و تحولات، سنگ‌ها و کانی‌ها، فسیل‌ها، منابع و انرژی زمین', questionCount: 60, slug: 'final-exam' },
+        { 
+          id: 21, 
+          name: '📚 کل دروس کتاب جامعه‌شناسی (2)', 
+          description: 'شامل تمام مباحث: مبانی جامعه‌شناسی، نهادهای اجتماعی، کنش‌ها و روابط اجتماعی، تغییرات اجتماعی، کنترل و انحراف اجتماعی و روش‌های تحقیق', 
+          questionCount: 50, 
+          slug: 'final-exam' 
+        },
       ]
     }
   ];
@@ -103,26 +261,33 @@ export default function GeologyChaptersPage() {
   };
 
   const handleLessonClick = (lessonSlug: string) => {
-    router.push(`/exam/yazdahom/tajrobi/sanjesh/first-half/zamin-shenasi-tajrobi/${lessonSlug}`);
+    router.push(`/exam/yazdahom/ensani/ghalamchi/first-half/jamee-shenasi-2/lesson/${lessonSlug}`);
   };
 
   const handleChapterExamClick = (examSlug: string) => {
-    router.push(`/exam/yazdahom/tajrobi/sanjesh/first-half/zamin-shenasi-tajrobi/chapter-exam/${examSlug}`);
+    router.push(`/exam/yazdahom/ensani/ghalamchi/first-half/jamee-shenasi-2/chapter-exam/${examSlug}`);
   };
 
   return (
     <div style={styles.container}>
+      {/* هدر */}
       <div style={styles.header}>
-        <button onClick={() => router.push('/exam/yazdahom/tajrobi/sanjesh/first-half')} style={styles.backButton}>
-          ← بازگشت به لیست دروس
-        </button>
-        <h1 style={styles.title}>🌍 زمین‌شناسی - پایه یازدهم تجربی قلمچی</h1>
+        <h1 style={styles.title}>📚 جامعه‌شناسی (2) - انتخاب فصل و درس</h1>
         <p style={styles.subtitle}>برای شروع، روی هر فصل کلیک کنید و سپس درس یا آزمون جامع مورد نظر را انتخاب نمایید</p>
+        
+        {/* دکمه بازگشت - در وسط */}
+        <div style={styles.backWrapper}>
+          <Link href="/exam/yazdahom/ensani/gozine2/first-half" className="back-link">
+            ← بازگشت به لیست دروس
+          </Link>
+        </div>
       </div>
 
+      {/* فصل‌ها */}
       <div style={styles.chaptersContainer}>
         {chapters.map((chapter) => (
           <div key={chapter.id} style={styles.chapterWrapper}>
+            {/* دکمه فصل */}
             <button
               onClick={() => handleChapterClick(chapter.id)}
               style={{
@@ -135,8 +300,10 @@ export default function GeologyChaptersPage() {
               <span style={styles.chapterArrow}>{openChapter === chapter.id ? '▲' : '▼'}</span>
             </button>
 
+            {/* درس‌ها و آزمون جامع فصل (فقط در صورت باز بودن نمایش داده می‌شود) */}
             {openChapter === chapter.id && (
               <div style={styles.lessonsContainer}>
+                {/* آزمون جامع فصل */}
                 <div
                   style={styles.chapterExamCard}
                   onClick={() => handleChapterExamClick(chapter.examSlug)}
@@ -150,13 +317,17 @@ export default function GeologyChaptersPage() {
                       <span style={styles.durationBadge}>⏱️ {Math.floor(chapter.examQuestionCount * 1.5)} دقیقه</span>
                     </div>
                   </div>
-                  <div style={styles.examButton}>شروع آزمون جامع →</div>
+                  <div style={styles.examButton}>
+                    شروع آزمون جامع →
+                  </div>
                 </div>
 
+                {/* خط جداکننده */}
                 <div style={styles.divider}>
                   <span style={styles.dividerText}>📖 دروس فصل</span>
                 </div>
 
+                {/* درس‌های فصل */}
                 {chapter.lessons.map((lesson) => (
                   <div
                     key={lesson.id}
@@ -169,10 +340,11 @@ export default function GeologyChaptersPage() {
                       <p style={styles.lessonDescription}>{lesson.description}</p>
                       <div style={styles.lessonStats}>
                         <span style={styles.questionCount}>📝 {lesson.questionCount} سوال</span>
-                        <span style={styles.durationBadge}>⏱️ {Math.floor(lesson.questionCount * 1.5)} دقیقه</span>
                       </div>
                     </div>
-                    <div style={styles.lessonButton}>شروع آزمون →</div>
+                    <div style={styles.lessonButton}>
+                      شروع آزمون →
+                    </div>
                   </div>
                 ))}
               </div>
@@ -181,14 +353,31 @@ export default function GeologyChaptersPage() {
         ))}
       </div>
 
+      {/* اطلاعات تکمیلی */}
       <div style={styles.infoBox}>
         <p>💡 نکته: برای شروع آزمون هر درس یا آزمون جامع فصل، روی آن کلیک کنید.</p>
         <p>📊 پس از اتمام هر آزمون، درصد شما به همراه پاسخنامه تشریحی نمایش داده می‌شود.</p>
         <p>🏆 آزمون‌های جامع شامل سوالات ترکیبی از تمام دروس آن فصل می‌باشند.</p>
-        <p>🌍 این آزمون‌ها مطابق با کتاب زمین‌شناسی پایه یازدهم رشته تجربی طراحی شده‌اند.</p>
       </div>
 
       <style>{`
+        .back-link {
+          display: inline-block;
+          background: #4a5568;
+          color: white;
+          padding: 0.6rem 1.5rem;
+          border-radius: 2rem;
+          text-decoration: none;
+          font-size: 0.95rem;
+          font-weight: 500;
+          transition: all 0.3s ease;
+          box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .back-link:hover {
+          background: #2d3748;
+          transform: translateX(-4px);
+          box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
         .lesson-card:hover {
           transform: translateX(5px);
           box-shadow: 0 4px 12px rgba(0,0,0,0.15);
@@ -215,36 +404,31 @@ export default function GeologyChaptersPage() {
   );
 }
 
+// استایل‌ها
 const styles: { [key: string]: React.CSSProperties } = {
   container: {
     minHeight: '100vh',
     padding: '2rem',
-    backgroundColor: '#f0f4f8',
+    background: 'linear-gradient(135deg, #f5f7fa, #c3cfe2)',
+    direction: 'rtl',
+    fontFamily: "'Vazir', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
   },
   header: {
     textAlign: 'center',
     marginBottom: '2rem',
-    padding: '2rem',
-    borderRadius: '1rem',
   },
-  backButton: {
-    backgroundColor: 'rgba(0,0,0,0.1)',
-    color: '#333',
-    border: 'none',
-    padding: '0.5rem 1.5rem',
-    borderRadius: '0.5rem',
-    cursor: 'pointer',
-    fontSize: '0.9rem',
-    marginBottom: '1rem',
+  backWrapper: {
+    marginTop: '1rem',
+    display: 'flex',
+    justifyContent: 'center',
   },
   title: {
-    fontSize: '2.5rem',
-    color: '#1a237e',
+    fontSize: '2rem',
+    color: '#1a202c',
     margin: '0.5rem 0',
-    fontWeight: 'bold',
   },
   subtitle: {
-    color: '#555',
+    color: '#4a5568',
     fontSize: '1rem',
   },
   chaptersContainer: {
@@ -255,10 +439,9 @@ const styles: { [key: string]: React.CSSProperties } = {
     gap: '1rem',
   },
   chapterWrapper: {
-    backgroundColor: 'white',
+    backgroundColor: 'rgba(255,255,255,0.1)',
     borderRadius: '1rem',
     overflow: 'hidden',
-    boxShadow: '0 2px 10px rgba(0,0,0,0.1)',
   },
   chapterButton: {
     width: '100%',
@@ -289,7 +472,7 @@ const styles: { [key: string]: React.CSSProperties } = {
     display: 'flex',
     flexDirection: 'column',
     gap: '0.8rem',
-    backgroundColor: '#f8f9fa',
+    backgroundColor: 'rgba(255,255,255,0.95)',
   },
   chapterExamCard: {
     display: 'flex',
@@ -301,7 +484,7 @@ const styles: { [key: string]: React.CSSProperties } = {
     cursor: 'pointer',
     transition: 'all 0.2s',
     boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
-    border: '2px solid #81c784',
+    border: '1px solid #81c784',
   },
   chapterExamIcon: {
     fontSize: '2rem',
@@ -319,11 +502,11 @@ const styles: { [key: string]: React.CSSProperties } = {
     position: 'relative',
   },
   dividerText: {
-    backgroundColor: '#e9ecef',
+    backgroundColor: '#f5f5f5',
     padding: '0.2rem 1rem',
     borderRadius: '1rem',
     fontSize: '0.75rem',
-    color: '#6c757d',
+    color: '#888',
   },
   lessonCard: {
     display: 'flex',
@@ -334,7 +517,7 @@ const styles: { [key: string]: React.CSSProperties } = {
     borderRadius: '0.75rem',
     cursor: 'pointer',
     transition: 'all 0.2s',
-    boxShadow: '0 2px 4px rgba(0,0,0,0.08)',
+    boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
   },
   lessonIcon: {
     fontSize: '1.8rem',
@@ -351,7 +534,7 @@ const styles: { [key: string]: React.CSSProperties } = {
   },
   lessonDescription: {
     margin: '0.25rem 0',
-    fontSize: '0.8rem',
+    fontSize: '0.75rem',
     color: '#666',
   },
   lessonStats: {
@@ -377,7 +560,7 @@ const styles: { [key: string]: React.CSSProperties } = {
   lessonButton: {
     backgroundColor: '#9C27B0',
     color: 'white',
-    padding: '0.4rem 1rem',
+    padding: '0.4rem 0.8rem',
     borderRadius: '2rem',
     fontSize: '0.75rem',
     fontWeight: 'bold',
@@ -387,7 +570,7 @@ const styles: { [key: string]: React.CSSProperties } = {
   examButton: {
     backgroundColor: '#4caf50',
     color: 'white',
-    padding: '0.4rem 1rem',
+    padding: '0.4rem 0.8rem',
     borderRadius: '2rem',
     fontSize: '0.75rem',
     fontWeight: 'bold',
@@ -395,15 +578,14 @@ const styles: { [key: string]: React.CSSProperties } = {
     transition: 'all 0.2s',
   },
   infoBox: {
-    backgroundColor: 'white',
+    backgroundColor: 'rgba(255,255,255,0.8)',
     borderRadius: '1rem',
-    padding: '1.5rem',
+    padding: '1rem',
     marginTop: '2rem',
     maxWidth: '600px',
     marginLeft: 'auto',
     marginRight: 'auto',
     textAlign: 'center',
-    boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
-    color: '#555',
+    color: '#4a5568',
   },
 };

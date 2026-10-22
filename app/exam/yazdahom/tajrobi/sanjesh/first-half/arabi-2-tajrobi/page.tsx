@@ -1,7 +1,9 @@
 'use client';
+import Link from 'next/link';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 
+// تعریف تایپ برای درس
 interface Lesson {
   id: number;
   name: string;
@@ -10,6 +12,7 @@ interface Lesson {
   slug: string;
 }
 
+// تعریف تایپ برای فصل
 interface Chapter {
   id: number;
   name: string;
@@ -21,79 +24,234 @@ interface Chapter {
   examQuestionCount: number;
 }
 
-export default function ArabicChaptersPage() {
+export default function Arabi2ChaptersPage() {
   const router = useRouter();
   const [openChapter, setOpenChapter] = useState<number | null>(null);
 
+  // ======================== ساختار فصل‌ها و درس‌های کتاب عربی (2) یازدهم انسانی ========================
   const chapters: Chapter[] = [
     {
       id: 1,
-      name: 'فصل اول: قواعد (الف) - افعال و صرف',
-      icon: '📝',
-      color: '#1A237E',
+      name: 'فصل اول: قواعد و ترجمه (1)',
+      icon: '📕',
+      color: '#2196F3',
       examSlug: 'chapter1-exam',
-      examName: 'آزمون جامع فصل اول: افعال و صرف',
+      examName: 'آزمون جامع فصل اول: قواعد و ترجمه (1)',
       examQuestionCount: 25,
       lessons: [
-        { id: 1, name: 'درس ۱: فعل ماضی و مضارع', description: 'صرف افعال ماضی و مضارع، شناسه‌ها', questionCount: 12, slug: 'lesson1' },
-        { id: 2, name: 'درس ۲: فعل امر و نهی', description: 'ساختار فعل امر، نهی و کاربرد آن', questionCount: 10, slug: 'lesson2' },
-        { id: 3, name: 'درس ۳: انواع افعال (ناقص، معتل، سالم)', description: 'افعال ناقص، معتل و سالم، ویژگی‌ها', questionCount: 12, slug: 'lesson3' },
+        { 
+          id: 1, 
+          name: 'درس اول: اعراب و علائم آن', 
+          description: 'اعراب اصلی و فرعی، علامت‌های اعراب، حرکات و تنوین', 
+          questionCount: 12, 
+          slug: 'lesson1' 
+        },
+        { 
+          id: 2, 
+          name: 'درس دوم: انواع مفعول‌ها', 
+          description: 'مفعول به، مفعول مطلق، مفعول له، مفعول فیه', 
+          questionCount: 10, 
+          slug: 'lesson2' 
+        },
+        { 
+          id: 3, 
+          name: 'درس سوم: اسم اشاره و اسم موصول', 
+          description: 'اسم‌های اشاره، اسم‌های موصول، کاربرد در جمله', 
+          questionCount: 10, 
+          slug: 'lesson3' 
+        },
       ]
     },
     {
       id: 2,
-      name: 'فصل دوم: قواعد (ب) - اعراب و نحو',
+      name: 'فصل دوم: قواعد و ترجمه (2)',
       icon: '📖',
-      color: '#1565C0',
+      color: '#4CAF50',
       examSlug: 'chapter2-exam',
-      examName: 'آزمون جامع فصل دوم: اعراب و نحو',
+      examName: 'آزمون جامع فصل دوم: قواعد و ترجمه (2)',
       examQuestionCount: 28,
       lessons: [
-        { id: 4, name: 'درس ۴: علامت‌های اعراب', description: 'اعراب اصلی و فرعی، علامت‌های رفع، نصب، جر و جزم', questionCount: 12, slug: 'lesson4' },
-        { id: 5, name: 'درس ۵: انواع مرفوعات', description: 'فاعل، نائب فاعل، مبتدا و خبر', questionCount: 10, slug: 'lesson5' },
-        { id: 6, name: 'درس ۶: انواع منصوبات', description: 'مفعول به، مفعول مطلق، مفعول فیه، حال و تمیز', questionCount: 12, slug: 'lesson6' },
-        { id: 7, name: 'درس ۷: مجرورات و توابع', description: 'اسم مجرور، اضافه، صفت و عطف', questionCount: 10, slug: 'lesson7' },
+        { 
+          id: 4, 
+          name: 'درس اول: فعل‌های مضارع و امر', 
+          description: 'ساختار فعل مضارع، صرف، فعل امر، نفی و نهی', 
+          questionCount: 12, 
+          slug: 'lesson4' 
+        },
+        { 
+          id: 5, 
+          name: 'درس دوم: حروف جر و معانی آنها', 
+          description: 'حروف جر، معانی مختلف، کاربرد در جمله', 
+          questionCount: 10, 
+          slug: 'lesson5' 
+        },
+        { 
+          id: 6, 
+          name: 'درس سوم: اعداد و تمیز', 
+          description: 'اعداد اصلی و ترتیبی، تمیز، کاربرد اعداد', 
+          questionCount: 10, 
+          slug: 'lesson6' 
+        },
+        { 
+          id: 7, 
+          name: 'درس چهارم: اسلوب‌های شرط', 
+          description: 'ادوات شرط، جواب شرط، اسلوب شرطی', 
+          questionCount: 8, 
+          slug: 'lesson7' 
+        },
       ]
     },
     {
       id: 3,
-      name: 'فصل سوم: ترجمه و درک مطلب',
-      icon: '🔍',
-      color: '#E65100',
+      name: 'فصل سوم: ترجمه و متون قرآنی (1)',
+      icon: '🕌',
+      color: '#FF9800',
       examSlug: 'chapter3-exam',
-      examName: 'آزمون جامع فصل سوم: ترجمه و درک مطلب',
+      examName: 'آزمون جامع فصل سوم: ترجمه و متون قرآنی (1)',
       examQuestionCount: 25,
       lessons: [
-        { id: 8, name: 'درس ۸: ترجمه متون ساده', description: 'قواعد ترجمه، ترجمه عبارت‌های عربی', questionCount: 12, slug: 'lesson8' },
-        { id: 9, name: 'درس ۹: ترجمه متون دینی و ادبی', description: 'ترجمه آیات قرآن، احادیث و متون ادبی', questionCount: 12, slug: 'lesson9' },
-        { id: 10, name: 'درس ۱۰: درک مطلب و تعریب', description: 'درک مفاهیم، تعریب کلمات و جمله‌سازی', questionCount: 10, slug: 'lesson10' },
+        { 
+          id: 8, 
+          name: 'درس اول: ترجمه متون قرآنی (سوره‌های منتخب)', 
+          description: 'ترجمه آیات منتخب از قرآن، مفاهیم و واژگان کلیدی', 
+          questionCount: 12, 
+          slug: 'lesson8' 
+        },
+        { 
+          id: 9, 
+          name: 'درس دوم: ترجمه متون اسلامی', 
+          description: 'ترجمه متون اسلامی، نهج‌البلاغه، دعاها و احادیث', 
+          questionCount: 10, 
+          slug: 'lesson9' 
+        },
+        { 
+          id: 10, 
+          name: 'درس سوم: تحلیل صرفی و نحوی آیات', 
+          description: 'تجزیه و تحلیل صرفی و نحوی آیات قرآن', 
+          questionCount: 10, 
+          slug: 'lesson10' 
+        },
       ]
     },
     {
       id: 4,
-      name: 'فصل چهارم: تحلیل صرفی و نحوی',
-      icon: '🧩',
-      color: '#4CAF50',
+      name: 'فصل چهارم: ترجمه و متون قرآنی (2)',
+      icon: '📿',
+      color: '#E91E63',
       examSlug: 'chapter4-exam',
-      examName: 'آزمون جامع فصل چهارم: تحلیل صرفی و نحوی',
+      examName: 'آزمون جامع فصل چهارم: ترجمه و متون قرآنی (2)',
       examQuestionCount: 30,
       lessons: [
-        { id: 11, name: 'درس ۱۱: تحلیل صرفی کلمات', description: 'شناخت ریشه، وزن، باب و مشتقات', questionCount: 12, slug: 'lesson11' },
-        { id: 12, name: 'درس ۱۲: تحلیل نحوی جملات', description: 'تشخیص ارکان جمله، اعراب و نقش کلمات', questionCount: 14, slug: 'lesson12' },
-        { id: 13, name: 'درس ۱۳: اعراب‌گذاری کامل', description: 'اعراب‌گذاری جملات پیچیده و ترکیبی', questionCount: 10, slug: 'lesson13' },
-        { id: 14, name: 'درس ۱۴: مشتقات و اسم‌های مشتق', description: 'اسم فاعل، اسم مفعول، صفت مشبهه و اوزان', questionCount: 10, slug: 'lesson14' },
+        { 
+          id: 11, 
+          name: 'درس اول: ترجمه پیشرفته قرآن', 
+          description: 'ترجمه آیات پیچیده، مفاهیم عمیق قرآنی', 
+          questionCount: 12, 
+          slug: 'lesson11' 
+        },
+        { 
+          id: 12, 
+          name: 'درس دوم: ترجمه متون عربی کلاسیک', 
+          description: 'ترجمه نثر عربی کلاسیک، متون تاریخی و ادبی', 
+          questionCount: 10, 
+          slug: 'lesson12' 
+        },
+        { 
+          id: 13, 
+          name: 'درس سوم: تفسیر و بیان آیات', 
+          description: 'تفسیر آیات، بیان نکات تفسیری، شأن نزول', 
+          questionCount: 10, 
+          slug: 'lesson13' 
+        },
+        { 
+          id: 14, 
+          name: 'درس چهارم: ترجمه متون دعا و زیارت', 
+          description: 'ترجمه دعاها، زیارت‌نامه‌ها، مفاهیم عرفانی', 
+          questionCount: 10, 
+          slug: 'lesson14' 
+        },
       ]
     },
     {
       id: 5,
-      name: '🏆 آزمون جامع کل کتاب عربی (۲)',
+      name: 'فصل پنجم: قواعد و ترجمه (3)',
+      icon: '✍️',
+      color: '#9C27B0',
+      examSlug: 'chapter5-exam',
+      examName: 'آزمون جامع فصل پنجم: قواعد و ترجمه (3)',
+      examQuestionCount: 25,
+      lessons: [
+        { 
+          id: 15, 
+          name: 'درس اول: افعال ناقصه و تامه', 
+          description: 'افعال ناقصه (کان، ظل، بات) و تامه، کاربردها', 
+          questionCount: 12, 
+          slug: 'lesson15' 
+        },
+        { 
+          id: 16, 
+          name: 'درس دوم: مصدرها و کاربردها', 
+          description: 'انواع مصدر، مصدر میمی، مصدر صناعی، کاربرد', 
+          questionCount: 10, 
+          slug: 'lesson16' 
+        },
+        { 
+          id: 17, 
+          name: 'درس سوم: اسلوب‌های تعجب و تفضیل', 
+          description: 'اسلوب تعجب، اسم تفضیل، کاربرد در جمله', 
+          questionCount: 10, 
+          slug: 'lesson17' 
+        },
+      ]
+    },
+    {
+      id: 6,
+      name: 'فصل ششم: متون ادبی و تاریخی',
+      icon: '📚',
+      color: '#00BCD4',
+      examSlug: 'chapter6-exam',
+      examName: 'آزمون جامع فصل ششم: متون ادبی و تاریخی',
+      examQuestionCount: 28,
+      lessons: [
+        { 
+          id: 18, 
+          name: 'درس اول: متون ادبی عربی', 
+          description: 'شعر و نثر عربی، اشعار کلاسیک، متون ادبی', 
+          questionCount: 12, 
+          slug: 'lesson18' 
+        },
+        { 
+          id: 19, 
+          name: 'درس دوم: متون تاریخی و سیره', 
+          description: 'متون تاریخی، سیره نبوی، تاریخ اسلام', 
+          questionCount: 10, 
+          slug: 'lesson19' 
+        },
+        { 
+          id: 20, 
+          name: 'درس سوم: متون فلسفی و کلامی', 
+          description: 'متون فلسفه اسلامی، کلام، مفاهیم اعتقادی', 
+          questionCount: 10, 
+          slug: 'lesson20' 
+        },
+      ]
+    },
+    {
+      id: 7,
+      name: '🎯 آزمون جامع کل کتاب عربی (2)',
       icon: '🏆',
       color: '#FF6B6B',
       examSlug: 'final-exam',
-      examName: 'آزمون جامع کل کتاب عربی (۲)',
-      examQuestionCount: 60,
+      examName: 'آزمون جامع کل کتاب عربی (2)',
+      examQuestionCount: 50,
       lessons: [
-        { id: 15, name: '📚 کل دروس کتاب عربی (۲)', description: 'شامل تمام مباحث: افعال و صرف، اعراب و نحو، ترجمه، تحلیل صرفی و نحوی', questionCount: 60, slug: 'final-exam' },
+        { 
+          id: 21, 
+          name: '📚 کل دروس کتاب عربی (2)', 
+          description: 'شامل تمام مباحث: قواعد، ترجمه، متون قرآنی، ادبی، تاریخی و فلسفی', 
+          questionCount: 50, 
+          slug: 'final-exam' 
+        },
       ]
     }
   ];
@@ -103,26 +261,33 @@ export default function ArabicChaptersPage() {
   };
 
   const handleLessonClick = (lessonSlug: string) => {
-    router.push(`/exam/yazdahom/tajrobi/sanjesh/first-half/arabi-2-tajrobi/${lessonSlug}`);
+    router.push(`/exam/yazdahom/ensani/ghalamchi/first-half/arabi-2/lesson/${lessonSlug}`);
   };
 
   const handleChapterExamClick = (examSlug: string) => {
-    router.push(`/exam/yazdahom/tajrobi/sanjesh/first-half/arabi-2-tajrobi/chapter-exam/${examSlug}`);
+    router.push(`/exam/yazdahom/ensani/ghalamchi/first-half/arabi-2/chapter-exam/${examSlug}`);
   };
 
   return (
     <div style={styles.container}>
+      {/* هدر */}
       <div style={styles.header}>
-        <button onClick={() => router.push('/exam/yazdahom/tajrobi/sanjesh/first-half')} style={styles.backButton}>
-          ← بازگشت به لیست دروس
-        </button>
-        <h1 style={styles.title}>📚 عربی (۲) - پایه یازدهم تجربی گزینه دو</h1>
+        <h1 style={styles.title}>📚 عربی (2) - انتخاب فصل و درس</h1>
         <p style={styles.subtitle}>برای شروع، روی هر فصل کلیک کنید و سپس درس یا آزمون جامع مورد نظر را انتخاب نمایید</p>
+        
+        {/* دکمه بازگشت - در وسط */}
+        <div style={styles.backWrapper}>
+          <Link href="/exam/yazdahom/ensani/gozine2/first-half" className="back-link">
+            ← بازگشت به لیست دروس
+          </Link>
+        </div>
       </div>
 
+      {/* فصل‌ها */}
       <div style={styles.chaptersContainer}>
         {chapters.map((chapter) => (
           <div key={chapter.id} style={styles.chapterWrapper}>
+            {/* دکمه فصل */}
             <button
               onClick={() => handleChapterClick(chapter.id)}
               style={{
@@ -135,8 +300,10 @@ export default function ArabicChaptersPage() {
               <span style={styles.chapterArrow}>{openChapter === chapter.id ? '▲' : '▼'}</span>
             </button>
 
+            {/* درس‌ها و آزمون جامع فصل (فقط در صورت باز بودن نمایش داده می‌شود) */}
             {openChapter === chapter.id && (
               <div style={styles.lessonsContainer}>
+                {/* آزمون جامع فصل */}
                 <div
                   style={styles.chapterExamCard}
                   onClick={() => handleChapterExamClick(chapter.examSlug)}
@@ -150,13 +317,17 @@ export default function ArabicChaptersPage() {
                       <span style={styles.durationBadge}>⏱️ {Math.floor(chapter.examQuestionCount * 1.5)} دقیقه</span>
                     </div>
                   </div>
-                  <div style={styles.examButton}>شروع آزمون جامع →</div>
+                  <div style={styles.examButton}>
+                    شروع آزمون جامع →
+                  </div>
                 </div>
 
+                {/* خط جداکننده */}
                 <div style={styles.divider}>
                   <span style={styles.dividerText}>📖 دروس فصل</span>
                 </div>
 
+                {/* درس‌های فصل */}
                 {chapter.lessons.map((lesson) => (
                   <div
                     key={lesson.id}
@@ -169,10 +340,11 @@ export default function ArabicChaptersPage() {
                       <p style={styles.lessonDescription}>{lesson.description}</p>
                       <div style={styles.lessonStats}>
                         <span style={styles.questionCount}>📝 {lesson.questionCount} سوال</span>
-                        <span style={styles.durationBadge}>⏱️ {Math.floor(lesson.questionCount * 1.5)} دقیقه</span>
                       </div>
                     </div>
-                    <div style={styles.lessonButton}>شروع آزمون →</div>
+                    <div style={styles.lessonButton}>
+                      شروع آزمون →
+                    </div>
                   </div>
                 ))}
               </div>
@@ -181,14 +353,31 @@ export default function ArabicChaptersPage() {
         ))}
       </div>
 
+      {/* اطلاعات تکمیلی */}
       <div style={styles.infoBox}>
         <p>💡 نکته: برای شروع آزمون هر درس یا آزمون جامع فصل، روی آن کلیک کنید.</p>
         <p>📊 پس از اتمام هر آزمون، درصد شما به همراه پاسخنامه تشریحی نمایش داده می‌شود.</p>
         <p>🏆 آزمون‌های جامع شامل سوالات ترکیبی از تمام دروس آن فصل می‌باشند.</p>
-        <p>📚 این آزمون‌ها مطابق با کتاب عربی (۲) پایه یازدهم رشته تجربی طراحی شده‌اند.</p>
       </div>
 
       <style>{`
+        .back-link {
+          display: inline-block;
+          background: #4a5568;
+          color: white;
+          padding: 0.6rem 1.5rem;
+          border-radius: 2rem;
+          text-decoration: none;
+          font-size: 0.95rem;
+          font-weight: 500;
+          transition: all 0.3s ease;
+          box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .back-link:hover {
+          background: #2d3748;
+          transform: translateX(-4px);
+          box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
         .lesson-card:hover {
           transform: translateX(5px);
           box-shadow: 0 4px 12px rgba(0,0,0,0.15);
@@ -215,36 +404,31 @@ export default function ArabicChaptersPage() {
   );
 }
 
+// استایل‌ها
 const styles: { [key: string]: React.CSSProperties } = {
   container: {
     minHeight: '100vh',
     padding: '2rem',
-    backgroundColor: '#f0f4f8',
+    background: 'linear-gradient(135deg, #f5f7fa, #c3cfe2)',
+    direction: 'rtl',
+    fontFamily: "'Vazir', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
   },
   header: {
     textAlign: 'center',
     marginBottom: '2rem',
-    padding: '2rem',
-    borderRadius: '1rem',
   },
-  backButton: {
-    backgroundColor: 'rgba(0,0,0,0.1)',
-    color: '#333',
-    border: 'none',
-    padding: '0.5rem 1.5rem',
-    borderRadius: '0.5rem',
-    cursor: 'pointer',
-    fontSize: '0.9rem',
-    marginBottom: '1rem',
+  backWrapper: {
+    marginTop: '1rem',
+    display: 'flex',
+    justifyContent: 'center',
   },
   title: {
-    fontSize: '2.5rem',
-    color: '#1a237e',
+    fontSize: '2rem',
+    color: '#1a202c',
     margin: '0.5rem 0',
-    fontWeight: 'bold',
   },
   subtitle: {
-    color: '#555',
+    color: '#4a5568',
     fontSize: '1rem',
   },
   chaptersContainer: {
@@ -255,10 +439,9 @@ const styles: { [key: string]: React.CSSProperties } = {
     gap: '1rem',
   },
   chapterWrapper: {
-    backgroundColor: 'white',
+    backgroundColor: 'rgba(255,255,255,0.1)',
     borderRadius: '1rem',
     overflow: 'hidden',
-    boxShadow: '0 2px 10px rgba(0,0,0,0.1)',
   },
   chapterButton: {
     width: '100%',
@@ -289,7 +472,7 @@ const styles: { [key: string]: React.CSSProperties } = {
     display: 'flex',
     flexDirection: 'column',
     gap: '0.8rem',
-    backgroundColor: '#f8f9fa',
+    backgroundColor: 'rgba(255,255,255,0.95)',
   },
   chapterExamCard: {
     display: 'flex',
@@ -301,7 +484,7 @@ const styles: { [key: string]: React.CSSProperties } = {
     cursor: 'pointer',
     transition: 'all 0.2s',
     boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
-    border: '2px solid #81c784',
+    border: '1px solid #81c784',
   },
   chapterExamIcon: {
     fontSize: '2rem',
@@ -319,11 +502,11 @@ const styles: { [key: string]: React.CSSProperties } = {
     position: 'relative',
   },
   dividerText: {
-    backgroundColor: '#e9ecef',
+    backgroundColor: '#f5f5f5',
     padding: '0.2rem 1rem',
     borderRadius: '1rem',
     fontSize: '0.75rem',
-    color: '#6c757d',
+    color: '#888',
   },
   lessonCard: {
     display: 'flex',
@@ -334,7 +517,7 @@ const styles: { [key: string]: React.CSSProperties } = {
     borderRadius: '0.75rem',
     cursor: 'pointer',
     transition: 'all 0.2s',
-    boxShadow: '0 2px 4px rgba(0,0,0,0.08)',
+    boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
   },
   lessonIcon: {
     fontSize: '1.8rem',
@@ -351,7 +534,7 @@ const styles: { [key: string]: React.CSSProperties } = {
   },
   lessonDescription: {
     margin: '0.25rem 0',
-    fontSize: '0.8rem',
+    fontSize: '0.75rem',
     color: '#666',
   },
   lessonStats: {
@@ -377,7 +560,7 @@ const styles: { [key: string]: React.CSSProperties } = {
   lessonButton: {
     backgroundColor: '#9C27B0',
     color: 'white',
-    padding: '0.4rem 1rem',
+    padding: '0.4rem 0.8rem',
     borderRadius: '2rem',
     fontSize: '0.75rem',
     fontWeight: 'bold',
@@ -387,7 +570,7 @@ const styles: { [key: string]: React.CSSProperties } = {
   examButton: {
     backgroundColor: '#4caf50',
     color: 'white',
-    padding: '0.4rem 1rem',
+    padding: '0.4rem 0.8rem',
     borderRadius: '2rem',
     fontSize: '0.75rem',
     fontWeight: 'bold',
@@ -395,15 +578,14 @@ const styles: { [key: string]: React.CSSProperties } = {
     transition: 'all 0.2s',
   },
   infoBox: {
-    backgroundColor: 'white',
+    backgroundColor: 'rgba(255,255,255,0.8)',
     borderRadius: '1rem',
-    padding: '1.5rem',
+    padding: '1rem',
     marginTop: '2rem',
     maxWidth: '600px',
     marginLeft: 'auto',
     marginRight: 'auto',
     textAlign: 'center',
-    boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
-    color: '#555',
+    color: '#4a5568',
   },
 };

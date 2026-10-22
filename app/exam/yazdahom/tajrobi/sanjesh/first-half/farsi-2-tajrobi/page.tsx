@@ -1,409 +1,321 @@
 'use client';
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
+
+import { useParams, useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 interface Lesson {
   id: number;
   name: string;
-  description: string;
-  questionCount: number;
-  slug: string;
-}
-
-interface Chapter {
-  id: number;
-  name: string;
   icon: string;
   color: string;
-  lessons: Lesson[];
-  examSlug: string;
-  examName: string;
-  examQuestionCount: number;
+  description: string;
+  questionCount: number;
 }
 
-export default function FarsiChaptersPage() {
+export default function LessonsPage() {
+  const params = useParams();
   const router = useRouter();
-  const [openChapter, setOpenChapter] = useState<number | null>(null);
 
-  const chapters: Chapter[] = [
+  const grade = params.grade as string; // 'yazdahom'
+  const field = params.field as string; // 'tajrobi'
+  const exam = params.exam as string; // 'ghalamchi'
+  const semester = params.semester as string; // 'first-half'
+
+  // ======================== توابع تبدیل نام‌ها ========================
+  const getGradeName = (gradePath: string): string => {
+    const map: Record<string, string> = {
+      dahom: 'دهم',
+      yazdahom: 'یازدهم',
+      davazdahom: 'دوازدهم',
+    };
+    return map[gradePath] || gradePath;
+  };
+
+  const getFieldName = (fieldPath: string): string => {
+    const map: Record<string, string> = {
+      ensani: 'انسانی',
+      riyazi: 'ریاضی',
+      tajrobi: 'تجربی',
+    };
+    return map[fieldPath] || fieldPath;
+  };
+
+  const getExamName = (examPath: string): string => {
+    const map: Record<string, string> = {
+      ghalamchi: 'قلمچی',
+      gozine2: 'گزینه دو',
+      sanjesh: 'سنجش',
+      maz: 'ماز',
+      kheilisabz: 'خیلی سبز',
+    };
+    return map[examPath] || examPath;
+  };
+
+  const getSemesterName = (semesterPath: string): string => {
+    const map: Record<string, string> = {
+      'first-half': 'نیم‌سال اول',
+      'second-half': 'نیم‌سال دوم',
+    };
+    return map[semesterPath] || semesterPath;
+  };
+
+  // ======================== لیست دروس یازدهم تجربی ========================
+  const lessons: Lesson[] = [
     {
       id: 1,
-      name: 'فصل اول: ادبیات تعلیمی',
-      icon: '📚',
-      color: '#1A237E',
-      examSlug: 'chapter1-exam',
-      examName: 'آزمون جامع فصل اول: ادبیات تعلیمی',
-      examQuestionCount: 25,
-      lessons: [
-        { id: 1, name: 'درس ۱: گلستان سعدی', description: 'حکایت‌های تعلیمی، اخلاق و پندآموزی', questionCount: 12, slug: 'lesson1' },
-        { id: 2, name: 'درس ۲: کلیله و دمنه', description: 'داستان‌های تمثیلی و حیوانات، نتیجه‌گیری اخلاقی', questionCount: 14, slug: 'lesson2' },
-        { id: 3, name: 'درس ۳: بوستان سعدی', description: 'انواع حکایت و پندهای اخلاقی', questionCount: 12, slug: 'lesson3' },
-      ]
+      name: 'فیزیک (2)',
+      icon: '⚛️',
+      color: '#9C27B0',
+      description: 'مکانیک، الکتریسیته، مغناطیس، موج و نور',
+      questionCount: 10,
     },
     {
       id: 2,
-      name: 'فصل دوم: ادبیات غنایی',
-      icon: '🌹',
-      color: '#1565C0',
-      examSlug: 'chapter2-exam',
-      examName: 'آزمون جامع فصل دوم: ادبیات غنایی',
-      examQuestionCount: 28,
-      lessons: [
-        { id: 4, name: 'درس ۴: غزلیات حافظ', description: 'غزلیات عارفانه، عشق و عرفان', questionCount: 12, slug: 'lesson4' },
-        { id: 5, name: 'درس ۵: اشعار مولوی', description: 'مثنوی معنوی، عشق الهی و عرفان', questionCount: 10, slug: 'lesson5' },
-        { id: 6, name: 'درس ۶: اشعار سعدی', description: 'غزلیات عاشقانه و عارفانه', questionCount: 10, slug: 'lesson6' },
-        { id: 7, name: 'درس ۷: رباعیات خیام', description: 'اندیشه‌های فلسفی، شکوه از دنیا', questionCount: 8, slug: 'lesson7' },
-      ]
+      name: 'شیمی (2)',
+      icon: '🧪',
+      color: '#4CAF50',
+      description: 'شیمی آلی، معدنی، ترمودینامیک و سینتیک',
+      questionCount: 10,
     },
     {
       id: 3,
-      name: 'فصل سوم: ادبیات حماسی',
-      icon: '⚔️',
-      color: '#E65100',
-      examSlug: 'chapter3-exam',
-      examName: 'آزمون جامع فصل سوم: ادبیات حماسی',
-      examQuestionCount: 25,
-      lessons: [
-        { id: 8, name: 'درس ۸: شاهنامه فردوسی', description: 'داستان‌های قهرمانی، پهلوانان اساطیری', questionCount: 14, slug: 'lesson8' },
-        { id: 9, name: 'درس ۹: داستان رستم و سهراب', description: 'تراژدی رستم و سهراب، مفاهیم حماسی', questionCount: 12, slug: 'lesson9' },
-        { id: 10, name: 'درس ۱۰: داستان سیاوش', description: 'داستان سیاوش، بی‌گناهی و تراژدی', questionCount: 10, slug: 'lesson10' },
-      ]
+      name: 'زیست‌شناسی (2)',
+      icon: '🧬',
+      color: '#00BCD4',
+      description: 'ژنتیک، تکامل، فیزیولوژی گیاهی و جانوری',
+      questionCount: 10,
     },
     {
       id: 4,
-      name: 'فصل چهارم: ادبیات داستانی',
-      icon: '📖',
-      color: '#4CAF50',
-      examSlug: 'chapter4-exam',
-      examName: 'آزمون جامع فصل چهارم: ادبیات داستانی',
-      examQuestionCount: 28,
-      lessons: [
-        { id: 11, name: 'درس ۱۱: داستان‌نویسی معاصر', description: 'داستان کوتاه، عناصر داستان', questionCount: 12, slug: 'lesson11' },
-        { id: 12, name: 'درس ۱۲: آثار جلال آل‌احمد', description: 'داستان‌های اجتماعی، نقد و تحلیل', questionCount: 10, slug: 'lesson12' },
-        { id: 13, name: 'درس ۱۳: آثار صادق هدایت', description: 'داستان‌های روان‌شناختی، تحلیل شخصیت', questionCount: 10, slug: 'lesson13' },
-        { id: 14, name: 'درس ۱۴: داستان‌های انقلاب', description: 'ادبیات دفاع مقدس، داستان‌های ارزشی', questionCount: 8, slug: 'lesson14' },
-      ]
+      name: 'ریاضی (2)',
+      icon: '📐',
+      color: '#F44336',
+      description: 'مثلثات، ماتریس، احتمال، حد و مشتق',
+      questionCount: 8,
     },
     {
       id: 5,
-      name: '🏆 آزمون جامع کل کتاب فارسی (۲)',
-      icon: '🏆',
-      color: '#FF6B6B',
-      examSlug: 'final-exam',
-      examName: 'آزمون جامع کل کتاب فارسی (۲)',
-      examQuestionCount: 60,
-      lessons: [
-        { id: 15, name: '📚 کل دروس کتاب فارسی (۲)', description: 'شامل تمام مباحث: ادبیات تعلیمی، غنایی، حماسی و داستانی', questionCount: 60, slug: 'final-exam' },
-      ]
+      name: 'زمین‌شناسی',
+      icon: '🌍',
+      color: '#795548',
+      description: 'ساختمان زمین، سنگ‌ها، کانی‌ها، فسیل‌شناسی',
+      questionCount: 8,
+    },
+    {
+      id: 6,
+      name: 'فارسی (2)',
+      icon: '📝',
+      color: '#FF9800',
+      description: 'ادبیات فارسی، آرایه‌ها، دستور زبان',
+      questionCount: 8,
+    },
+    {
+      id: 7,
+      name: 'عربی (2)',
+      icon: '📜',
+      color: '#795548',
+      description: 'قواعد عربی، ترجمه، متون قرآنی',
+      questionCount: 8,
+    },
+    {
+      id: 8,
+      name: 'دین و زندگی (2)',
+      icon: '🕌',
+      color: '#E91E63',
+      description: 'آموزه‌های دینی، اخلاق، احکام',
+      questionCount: 8,
+    },
+    {
+      id: 9,
+      name: 'زبان انگلیسی (2)',
+      icon: '🇬🇧',
+      color: '#3F51B5',
+      description: 'گرامر، واژگان، درک مطلب، نگارش',
+      questionCount: 8,
     }
   ];
 
-  const handleChapterClick = (chapterId: number) => {
-    setOpenChapter(openChapter === chapterId ? null : chapterId);
+  // ======================== نگاشت نام درس به slug ========================
+  const getLessonSlug = (lessonName: string): string => {
+    const trimmed = lessonName.trim();
+    const slugMap: Record<string, string> = {
+      'فارسی (2)': 'farsi-2-tajrobi',
+      'دین و زندگی (2)': 'din-va-zendegi-2-tajrobi',
+      'زبان انگلیسی (2)': 'english-2-tajrobi',
+      'عربی (2)': 'arabi-2-tajrobi',
+      'فیزیک (2)': 'fizik-2-tajrobi',
+      'شیمی (2)': 'shimi-2-tajrobi',
+      'زیست‌شناسی (2)': 'zist-shenasi-2-tajrobi',
+      'ریاضی (2)': 'riyazi-2-tajrobi',
+      'زمین‌شناسی': 'zamin-shenasi-tajrobi',
+    };
+    return slugMap[trimmed] || trimmed.replace(/ /g, '-').toLowerCase();
   };
 
-  const handleLessonClick = (lessonSlug: string) => {
-    router.push(`/exam/yazdahom/tajrobi/sanjesh/first-half/farsi-2-tajrobi/${lessonSlug}`);
-  };
-
-  const handleChapterExamClick = (examSlug: string) => {
-    router.push(`/exam/yazdahom/tajrobi/sanjesh/first-half/farsi-2-tajrobi/chapter-exam/${examSlug}`);
+  // ======================== هندلر کلیک روی درس ========================
+  const handleLessonClick = (lessonName: string) => {
+    const lessonSlug = getLessonSlug(lessonName);
+    router.push(`/exam/yazdahom/tajrobi/sanjesh/first-half/${lessonSlug}`);
   };
 
   return (
-    <div style={styles.container}>
-      <div style={styles.header}>
-        <button onClick={() => router.push('/exam/yazdahom/tajrobi/sanjesh/first-half')} style={styles.backButton}>
-          ← بازگشت به لیست دروس
-        </button>
-        <h1 style={styles.title}>📖 فارسی (۲) - پایه یازدهم تجربی گزینه دو</h1>
-        <p style={styles.subtitle}>برای شروع، روی هر فصل کلیک کنید و سپس درس یا آزمون جامع مورد نظر را انتخاب نمایید</p>
+    <div className="exam-lessons-container">
+      <div className="exam-header">
+        <Link href="/" className="back-to-home">
+          ← بازگشت به صفحه اصلی
+        </Link>
+        <h1 className="exam-title">
+          📚 {getExamName(exam)} - {getGradeName(grade)} {getFieldName(field)}
+        </h1>
+        <p className="exam-subtitle">
+          {getSemesterName(semester)} - درس مورد نظر خود را انتخاب کنید:
+        </p>
       </div>
 
-      <div style={styles.chaptersContainer}>
-        {chapters.map((chapter) => (
-          <div key={chapter.id} style={styles.chapterWrapper}>
-            <button
-              onClick={() => handleChapterClick(chapter.id)}
-              style={{
-                ...styles.chapterButton,
-                backgroundColor: openChapter === chapter.id ? chapter.color : '#4a5568',
-              }}
-            >
-              <span style={styles.chapterIcon}>{chapter.icon}</span>
-              <span style={styles.chapterName}>{chapter.name}</span>
-              <span style={styles.chapterArrow}>{openChapter === chapter.id ? '▲' : '▼'}</span>
-            </button>
-
-            {openChapter === chapter.id && (
-              <div style={styles.lessonsContainer}>
-                <div
-                  style={styles.chapterExamCard}
-                  onClick={() => handleChapterExamClick(chapter.examSlug)}
-                >
-                  <div style={styles.chapterExamIcon}>🎯</div>
-                  <div style={styles.lessonInfo}>
-                    <h3 style={styles.chapterExamTitle}>{chapter.examName}</h3>
-                    <p style={styles.lessonDescription}>آزمون جامع تمام دروس این فصل</p>
-                    <div style={styles.lessonStats}>
-                      <span style={styles.questionCount}>📝 {chapter.examQuestionCount} سوال</span>
-                      <span style={styles.durationBadge}>⏱️ {Math.floor(chapter.examQuestionCount * 1.5)} دقیقه</span>
-                    </div>
-                  </div>
-                  <div style={styles.examButton}>شروع آزمون جامع →</div>
-                </div>
-
-                <div style={styles.divider}>
-                  <span style={styles.dividerText}>📖 دروس فصل</span>
-                </div>
-
-                {chapter.lessons.map((lesson) => (
-                  <div
-                    key={lesson.id}
-                    style={styles.lessonCard}
-                    onClick={() => handleLessonClick(lesson.slug)}
-                  >
-                    <div style={styles.lessonIcon}>📘</div>
-                    <div style={styles.lessonInfo}>
-                      <h3 style={styles.lessonName}>{lesson.name}</h3>
-                      <p style={styles.lessonDescription}>{lesson.description}</p>
-                      <div style={styles.lessonStats}>
-                        <span style={styles.questionCount}>📝 {lesson.questionCount} سوال</span>
-                        <span style={styles.durationBadge}>⏱️ {Math.floor(lesson.questionCount * 1.5)} دقیقه</span>
-                      </div>
-                    </div>
-                    <div style={styles.lessonButton}>شروع آزمون →</div>
-                  </div>
-                ))}
-              </div>
-            )}
+      <div className="lessons-grid">
+        {lessons.map((lesson) => (
+          <div
+            key={lesson.id}
+            className="lesson-card"
+            onClick={() => handleLessonClick(lesson.name)}
+          >
+            <div className="lesson-icon">{lesson.icon}</div>
+            <h3 className="lesson-name">{lesson.name}</h3>
+            <p className="lesson-description">{lesson.description}</p>
+            <div className="lesson-stats">
+              <span className="question-count">📝 {lesson.questionCount} سوال</span>
+            </div>
+            <div className="lesson-button" style={{ backgroundColor: lesson.color }}>
+              شروع آزمون {lesson.name}
+            </div>
           </div>
         ))}
       </div>
 
-      <div style={styles.infoBox}>
-        <p>💡 نکته: برای شروع آزمون هر درس یا آزمون جامع فصل، روی آن کلیک کنید.</p>
-        <p>📊 پس از اتمام هر آزمون، درصد شما به همراه پاسخنامه تشریحی نمایش داده می‌شود.</p>
-        <p>🏆 آزمون‌های جامع شامل سوالات ترکیبی از تمام دروس آن فصل می‌باشند.</p>
-        <p>📖 این آزمون‌ها مطابق با کتاب فارسی (۲) پایه یازدهم رشته تجربی طراحی شده‌اند.</p>
+      <div className="info-box">
+        <p>💡 هر آزمون شامل سوالات تخصصی {getSemesterName(semester)} {getGradeName(grade)} {getFieldName(field)} می‌باشد.</p>
+        <p>📊 پس از اتمام آزمون، درصد شما به همراه پاسخنامه تشریحی نمایش داده می‌شود.</p>
       </div>
 
-      <style>{`
+      <style jsx>{`
+        .exam-lessons-container {
+          min-height: 100vh;
+          padding: 2rem;
+          background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+          direction: rtl;
+          font-family: 'Vazir', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .exam-header {
+          text-align: center;
+          margin-bottom: 2rem;
+        }
+        .back-to-home {
+          display: inline-block;
+          background: #4a5568;
+          color: white;
+          padding: 0.5rem 1rem;
+          border-radius: 0.5rem;
+          text-decoration: none;
+          margin-bottom: 1rem;
+          font-size: 0.9rem;
+          transition: background 0.2s;
+        }
+        .back-to-home:hover {
+          background: #2d3748;
+        }
+        .exam-title {
+          font-size: 2rem;
+          color: #1a202c;
+          margin: 0.5rem 0;
+        }
+        .exam-subtitle {
+          color: #4a5568;
+          font-size: 1rem;
+        }
+        .lessons-grid {
+          max-width: 1200px;
+          margin: 0 auto;
+          display: grid;
+          grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+          gap: 1.5rem;
+        }
+        .lesson-card {
+          background: white;
+          border-radius: 1rem;
+          padding: 1.5rem;
+          cursor: pointer;
+          transition: transform 0.2s, box-shadow 0.2s;
+          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
         .lesson-card:hover {
-          transform: translateX(5px);
-          box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+          transform: translateY(-5px);
+          box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
         }
-        .lesson-card:hover .lesson-button {
-          background-color: #10b981;
+        .lesson-icon {
+          font-size: 2.5rem;
+          margin-bottom: 0.5rem;
         }
-        .chapter-exam-card:hover {
-          transform: translateX(5px);
-          box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        .lesson-name {
+          font-size: 1.25rem;
+          font-weight: bold;
+          margin: 0.5rem 0;
+          color: #2d3748;
         }
-        .chapter-exam-card:hover .exam-button {
-          background-color: #10b981;
+        .lesson-description {
+          font-size: 0.85rem;
+          color: #718096;
+          margin: 0.5rem 0;
+          line-height: 1.4;
         }
-        @keyframes fadeIn {
-          from { opacity: 0; transform: translateY(-10px); }
-          to { opacity: 1; transform: translateY(0); }
+        .lesson-stats {
+          margin: 1rem 0;
         }
-        .lessons-container {
-          animation: fadeIn 0.3s ease-out;
+        .question-count {
+          background: #edf2f7;
+          padding: 0.2rem 0.6rem;
+          border-radius: 1rem;
+          font-size: 0.75rem;
+          color: #4a5568;
+        }
+        .lesson-button {
+          display: inline-block;
+          padding: 0.5rem 1rem;
+          border-radius: 2rem;
+          color: white;
+          font-size: 0.85rem;
+          font-weight: bold;
+          text-align: center;
+          transition: opacity 0.2s;
+          border: none;
+        }
+        .lesson-button:hover {
+          opacity: 0.9;
+        }
+        .info-box {
+          background: white;
+          border-radius: 1rem;
+          padding: 1rem;
+          margin-top: 2rem;
+          max-width: 600px;
+          margin-left: auto;
+          margin-right: auto;
+          text-align: center;
+          color: #4a5568;
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        @media (max-width: 768px) {
+          .exam-lessons-container {
+            padding: 1rem;
+          }
+          .exam-title {
+            font-size: 1.5rem;
+          }
+          .lessons-grid {
+            grid-template-columns: 1fr;
+          }
         }
       `}</style>
     </div>
   );
 }
-
-const styles: { [key: string]: React.CSSProperties } = {
-  container: {
-    minHeight: '100vh',
-    padding: '2rem',
-    backgroundColor: '#f0f4f8',
-  },
-  header: {
-    textAlign: 'center',
-    marginBottom: '2rem',
-    padding: '2rem',
-    borderRadius: '1rem',
-  },
-  backButton: {
-    backgroundColor: 'rgba(0,0,0,0.1)',
-    color: '#333',
-    border: 'none',
-    padding: '0.5rem 1.5rem',
-    borderRadius: '0.5rem',
-    cursor: 'pointer',
-    fontSize: '0.9rem',
-    marginBottom: '1rem',
-  },
-  title: {
-    fontSize: '2.5rem',
-    color: '#1a237e',
-    margin: '0.5rem 0',
-    fontWeight: 'bold',
-  },
-  subtitle: {
-    color: '#555',
-    fontSize: '1rem',
-  },
-  chaptersContainer: {
-    maxWidth: '900px',
-    margin: '0 auto',
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '1rem',
-  },
-  chapterWrapper: {
-    backgroundColor: 'white',
-    borderRadius: '1rem',
-    overflow: 'hidden',
-    boxShadow: '0 2px 10px rgba(0,0,0,0.1)',
-  },
-  chapterButton: {
-    width: '100%',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    padding: '1.2rem 1.5rem',
-    border: 'none',
-    color: 'white',
-    fontSize: '1.1rem',
-    fontWeight: 'bold',
-    cursor: 'pointer',
-    transition: 'all 0.3s ease',
-  },
-  chapterIcon: {
-    fontSize: '1.5rem',
-  },
-  chapterName: {
-    flex: 1,
-    textAlign: 'right',
-    marginRight: '1rem',
-  },
-  chapterArrow: {
-    fontSize: '0.9rem',
-  },
-  lessonsContainer: {
-    padding: '1rem',
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '0.8rem',
-    backgroundColor: '#f8f9fa',
-  },
-  chapterExamCard: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    padding: '1rem',
-    backgroundColor: '#e8f5e9',
-    borderRadius: '0.75rem',
-    cursor: 'pointer',
-    transition: 'all 0.2s',
-    boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
-    border: '2px solid #81c784',
-  },
-  chapterExamIcon: {
-    fontSize: '2rem',
-    marginRight: '1rem',
-  },
-  chapterExamTitle: {
-    margin: 0,
-    fontSize: '1rem',
-    fontWeight: 'bold',
-    color: '#2e7d32',
-  },
-  divider: {
-    textAlign: 'center',
-    margin: '0.5rem 0',
-    position: 'relative',
-  },
-  dividerText: {
-    backgroundColor: '#e9ecef',
-    padding: '0.2rem 1rem',
-    borderRadius: '1rem',
-    fontSize: '0.75rem',
-    color: '#6c757d',
-  },
-  lessonCard: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    padding: '1rem',
-    backgroundColor: 'white',
-    borderRadius: '0.75rem',
-    cursor: 'pointer',
-    transition: 'all 0.2s',
-    boxShadow: '0 2px 4px rgba(0,0,0,0.08)',
-  },
-  lessonIcon: {
-    fontSize: '1.8rem',
-    marginRight: '1rem',
-  },
-  lessonInfo: {
-    flex: 1,
-  },
-  lessonName: {
-    margin: 0,
-    fontSize: '1rem',
-    fontWeight: 'bold',
-    color: '#333',
-  },
-  lessonDescription: {
-    margin: '0.25rem 0',
-    fontSize: '0.8rem',
-    color: '#666',
-  },
-  lessonStats: {
-    marginTop: '0.25rem',
-    display: 'flex',
-    gap: '0.5rem',
-    flexWrap: 'wrap',
-  },
-  questionCount: {
-    backgroundColor: '#f0f0f0',
-    padding: '0.2rem 0.6rem',
-    borderRadius: '1rem',
-    fontSize: '0.7rem',
-    color: '#555',
-  },
-  durationBadge: {
-    backgroundColor: '#e3f2fd',
-    padding: '0.2rem 0.6rem',
-    borderRadius: '1rem',
-    fontSize: '0.7rem',
-    color: '#1565c0',
-  },
-  lessonButton: {
-    backgroundColor: '#9C27B0',
-    color: 'white',
-    padding: '0.4rem 1rem',
-    borderRadius: '2rem',
-    fontSize: '0.75rem',
-    fontWeight: 'bold',
-    whiteSpace: 'nowrap',
-    transition: 'all 0.2s',
-  },
-  examButton: {
-    backgroundColor: '#4caf50',
-    color: 'white',
-    padding: '0.4rem 1rem',
-    borderRadius: '2rem',
-    fontSize: '0.75rem',
-    fontWeight: 'bold',
-    whiteSpace: 'nowrap',
-    transition: 'all 0.2s',
-  },
-  infoBox: {
-    backgroundColor: 'white',
-    borderRadius: '1rem',
-    padding: '1.5rem',
-    marginTop: '2rem',
-    maxWidth: '600px',
-    marginLeft: 'auto',
-    marginRight: 'auto',
-    textAlign: 'center',
-    boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
-    color: '#555',
-  },
-};

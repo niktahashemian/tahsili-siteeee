@@ -62,12 +62,12 @@ export default function Hesaban1ChaptersPage() {
       examName: 'آزمون جامع فصل دوم: جریان الکتریکی و مدارهای جریان مستقیم ',
       examQuestionCount: 28,
       lessons: [
-        { id: 4, name: 'درس اول: جریان الکتریکی', description: 'تعریف تابع، دامنه و برد', questionCount: 10, slug: 'lesson4' },
-        { id: 5, name: 'درس دوم: مقاومت الکتریکی و قانون اهم', description: 'نمودار توابع خطی و درجه دوم', questionCount: 12, slug: 'lesson5' },
-        { id: 6, name: 'درس چهارم: عوامل مؤثر بر مقاومت الکتریکی', description: 'نقاط بحرانی، اکسترمم', questionCount: 8, slug: 'lesson6' },
-        { id: 7, name: 'درس پنجم: نیروی محرکۀ الکتریکی و مدارها', description: 'نقاط بحرانی، اکسترمم', questionCount: 8, slug: 'lesson6' },
-        { id: 8, name: 'درس ششم: توان در مدارهای الکتریکی', description: 'نقاط بحرانی، اکسترمم', questionCount: 8, slug: 'lesson6' },
-        { id: 9, name: 'درس هفتم: ترکیب مقاومت‌ها', description: 'نقاط بحرانی، اکسترمم', questionCount: 8, slug: 'lesson6' },
+        { id: 4, name: 'درس اول: جریان الکتریکی', description: 'تعریف تابع، دامنه و برد', questionCount: 10, slug: 'lesson13' },
+        { id: 5, name: 'درس دوم: مقاومت الکتریکی و قانون اهم', description: 'نمودار توابع خطی و درجه دوم', questionCount: 12, slug: 'lesson14' },
+        { id: 6, name: 'درس چهارم: عوامل مؤثر بر مقاومت الکتریکی', description: 'نقاط بحرانی، اکسترمم', questionCount: 8, slug: 'lesson15' },
+        { id: 7, name: 'درس پنجم: نیروی محرکۀ الکتریکی و مدارها', description: 'نقاط بحرانی، اکسترمم', questionCount: 8, slug: 'lesson16' },
+        { id: 8, name: 'درس ششم: توان در مدارهای الکتریکی', description: 'نقاط بحرانی، اکسترمم', questionCount: 8, slug: 'lesson17' },
+        { id: 9, name: 'درس هفتم: ترکیب مقاومت‌ها', description: 'نقاط بحرانی، اکسترمم', questionCount: 8, slug: 'lesson18' },
       ]
     },
     {
@@ -79,12 +79,12 @@ export default function Hesaban1ChaptersPage() {
       examName: 'آزمون جامع فصل سوم: مغناطیس',
       examQuestionCount: 32,
       lessons: [
-        { id: 7, name: 'درس اول: مغناطیس و قطبهای مغناطیسی', description: 'ویژگی‌ها و نمودار تابع نمایی', questionCount: 12, slug: 'lesson7' },
-        { id: 8, name: 'درس دوم: میدان مغناطیسی', description: 'تعریف لگاریتم، خواص لگاریتم', questionCount: 15, slug: 'lesson8' },
-        { id: 9, name: 'درس سوم: نیروی مغناطیسی وارد بر ذرۀ باردار متحرک در میدان مغناطیسى', description: 'حل معادلات نمایی و لگاریتمی', questionCount: 10, slug: 'lesson10' },
-        { id: 10, name: 'درس چهارم : نیروی مغناطیسی وارد بر سیم حامل جریان ', description: 'حل معادلات نمایی و لگاریتمی', questionCount: 10, slug: 'lesson11' },
-        { id: 11, name: 'درس پنجم: میدان مغناطیسی حاصل از جریان الکتریکی', description: 'حل معادلات نمایی و لگاریتمی', questionCount: 10, slug: 'lesson12' },
-        { id: 12, name: 'درس ششم: ویژگیهای مغناطیسی مواد', description: 'حل معادلات نمایی و لگاریتمی', questionCount: 10, slug: 'lesson13' },
+        { id: 7, name: 'درس اول: مغناطیس و قطبهای مغناطیسی', description: 'ویژگی‌ها و نمودار تابع نمایی', questionCount: 12, slug: 'lesson19' },
+        { id: 8, name: 'درس دوم: میدان مغناطیسی', description: 'تعریف لگاریتم، خواص لگاریتم', questionCount: 15, slug: 'lesson20' },
+        { id: 9, name: 'درس سوم: نیروی مغناطیسی وارد بر ذرۀ باردار متحرک در میدان مغناطیسى', description: 'حل معادلات نمایی و لگاریتمی', questionCount: 10, slug: 'lesson21' },
+        { id: 10, name: 'درس چهارم : نیروی مغناطیسی وارد بر سیم حامل جریان ', description: 'حل معادلات نمایی و لگاریتمی', questionCount: 10, slug: 'lesson22' },
+        { id: 11, name: 'درس پنجم: میدان مغناطیسی حاصل از جریان الکتریکی', description: 'حل معادلات نمایی و لگاریتمی', questionCount: 10, slug: 'lesson23' },
+        { id: 12, name: 'درس ششم: ویژگیهای مغناطیسی مواد', description: 'حل معادلات نمایی و لگاریتمی', questionCount: 10, slug: 'lesson24' },
       ]
     },
     {
@@ -96,11 +96,11 @@ export default function Hesaban1ChaptersPage() {
       examName: 'آزمون جامع فصل چهارم: القای الکترومغناطیسی و جریان متناوب ',
       examQuestionCount: 28,
       lessons: [
-        { id: 10, name: 'درس اول: پدیدۀ القای الکترومغناطیسی', description: 'نسبت‌های مثلثاتی، دایره واحد', questionCount: 12, slug: 'lesson10' },
-        { id: 11, name: 'درس دوم: قانون القای الکترومغناطیسی فاراده', description: 'اتحادهای مثلثاتی', questionCount: 10, slug: 'lesson11' },
-        { id: 12, name: 'درس سوم: قانون لنز', description: 'حل معادلات مثلثاتی', questionCount: 11, slug: 'lesson12' },
-        { id: 13, name: 'درس چهارم: القاگرها', description: 'حل معادلات مثلثاتی', questionCount: 12, slug: 'lesson12' },
-        { id: 14, name: 'درس پنجم: جریان متناوب', description: 'حل معادلات مثلثاتی', questionCount: 13, slug: 'lesson12' },
+        { id: 10, name: 'درس اول: پدیدۀ القای الکترومغناطیسی', description: 'نسبت‌های مثلثاتی، دایره واحد', questionCount: 12, slug: 'lesson25' },
+        { id: 11, name: 'درس دوم: قانون القای الکترومغناطیسی فاراده', description: 'اتحادهای مثلثاتی', questionCount: 10, slug: 'lesson26' },
+        { id: 12, name: 'درس سوم: قانون لنز', description: 'حل معادلات مثلثاتی', questionCount: 11, slug: 'lesson27' },
+        { id: 13, name: 'درس چهارم: القاگرها', description: 'حل معادلات مثلثاتی', questionCount: 12, slug: 'lesson28' },
+        { id: 14, name: 'درس پنجم: جریان متناوب', description: 'حل معادلات مثلثاتی', questionCount: 13, slug: 'lesson29' },
       ]
     },
     {
@@ -127,14 +127,14 @@ export default function Hesaban1ChaptersPage() {
   };
 
   const handleChapterExamClick = (examSlug: string) => {
-    router.push(`/exam/yazdahom/riyazi/maz/second-half/fizik-2/chapter-exam/${examSlug}`);
+    router.push(`/exam/yazdahom/riyazi/maz/first-half/fizik-2/chapter-exam/${examSlug}`);
   };
 
   return (
     <div style={styles.container}>
       {/* هدر */}
       <div className="exam-header">
-        <Link href="http://localhost:3000/exam/yazdahom/riyazi/maz/first-half" className="back-to-home">
+        <Link href="/exam/yazdahom/riyazi/maz/first-half" className="back-to-home">
           ← بازگشت به لیست دروس
         </Link>
        

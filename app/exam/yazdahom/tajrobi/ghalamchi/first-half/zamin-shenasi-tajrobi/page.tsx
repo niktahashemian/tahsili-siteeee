@@ -90,7 +90,7 @@ export default function ZaminShenasiChaptersPage() {
       icon: '🏆',
       color: '#FF6B6B',
       examSlug: 'final-exam',
-      examName: 'آزمون جامع کل کتاب زمین‌شناسی پایه یازدهم - گزینه دو',
+      examName: 'آزمون جامع کل کتاب زمین‌شناسی پایه یازدهم',
       examQuestionCount: 50,
       lessons: [
         { id: 15, name: '📚 کل دروس کتاب زمین‌شناسی', description: 'شامل تمام مباحث: زمین سامانه زنده، سنگ‌ها و کانی‌ها، فرآیندهای درونی و بیرونی', questionCount: 50, slug: 'final-exam' },
@@ -119,7 +119,7 @@ export default function ZaminShenasiChaptersPage() {
         >
           ← بازگشت به لیست دروس
         </button>
-        <h1 style={{ fontSize: '2.5rem', color: '#1a237e', margin: '0.5rem 0', fontWeight: 'bold' }}>🌍 زمین‌شناسی - پایه یازدهم تجربی گزینه دو</h1>
+        <h1 style={{ fontSize: '2.5rem', color: '#1a237e', margin: '0.5rem 0', fontWeight: 'bold' }}>🌍 زمین‌شناسی - پایه یازدهم تجربی قلمچی</h1>
         <p style={{ color: '#555', fontSize: '1rem' }}>برای شروع، روی هر فصل کلیک کنید و سپس درس یا آزمون جامع مورد نظر را انتخاب نمایید</p>
       </div>
 
@@ -219,7 +219,7 @@ export default function ZaminShenasiChaptersPage() {
         <p>💡 نکته: برای شروع آزمون هر درس یا آزمون جامع فصل، روی آن کلیک کنید.</p>
         <p>📊 پس از اتمام هر آزمون، درصد شما به همراه پاسخنامه تشریحی نمایش داده می‌شود.</p>
         <p>🏆 آزمون‌های جامع شامل سوالات ترکیبی از تمام دروس آن فصل می‌باشند.</p>
-        <p>🌍 این آزمون‌ها مطابق با کتاب زمین‌شناسی پایه یازدهم رشته تجربی - گزینه دو طراحی شده‌اند.</p>
+        <p>🌍 این آزمون‌ها مطابق با کتاب زمین‌شناسی پایه یازدهم رشته تجربی طراحی شده‌اند.</p>
       </div>
 
       <style>{`
