@@ -983,6 +983,19 @@
   .footer-social-link-icon {
     width: 36px;
     height: 36px;
+ 
+  }
+
+  .footer-copyright p {
+    font-size: 11px;
+  }
+}
+
+/* دسکتاپ بزرگ‌تر */
+@media (min-width: 1024px) {
+  .footer-copyright {
+    flex-direction: row;
+    justify-content: space-between;
   }
 
   .footer-copyright p {

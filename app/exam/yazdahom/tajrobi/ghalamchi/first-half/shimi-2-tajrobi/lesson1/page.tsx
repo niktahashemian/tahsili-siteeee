@@ -223,7 +223,7 @@ const Shimi2lesson1 = () => {
         position: 'relative'
       }}>
         <button 
-          onClick={() => router.push('/exam/yazdahom/tajrobi/ghalamchi/first-half/shimi-2-tajrobi')}
+          onClick={() => router.push('/exam/yazdahom/tajrobi/ghalamchi/second-half/shimi-2-tajrobi')}
           style={{
             position: 'absolute',
             left: '20px',
@@ -243,6 +243,7 @@ const Shimi2lesson1 = () => {
         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '20px', flexWrap: 'wrap' }}>
           <div>
             <h1 style={{ margin: 0, fontSize: '28px' }}>🧪 درس ۱: الگوها و روندها در رفتار مواد و عناصر</h1>
+            <h1 style={{ margin: 0, fontSize: '28px' }}>🧪 درس ۲-۲: الگوها و روندها در رفتار مواد و عناصر</h1>
             <p style={{ marginTop: '10px', fontSize: '16px', opacity: 0.9 }}>
               {questions.length} سوال - پاسخ داده شده: {answeredCount}/{questions.length}
             </p>
